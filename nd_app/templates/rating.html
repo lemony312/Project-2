@@ -1,0 +1,152 @@
+{% extends "baseadmin.html" %}
+
+{% block title %}
+
+Customer Evaluation
+
+{% endblock %}
+
+{% block body %}
+
+        <article id="featured" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic17.png" >
+          	<div class="content-wrapper clearfix" >            
+          		<div class="col-md-12">
+		            <h1 class="section-title" style="font-size:30px;" align="left">Customer Evaluation</h1>
+
+		            <center>
+			            <form class="form-style validate-form clearfix" action="{{ url_for('rating_search') }}" method="POST" role="form">
+				            <div class="col-md-12">
+				            	
+		            			<div align="left">
+		            				<p style="font-size:18px;">
+        								<span class="icon fa fa-user"></span> Search Customer
+      								</p>
+      							</div>
+
+              					<div class="form-group form-general-error-container"></div>
+				                <div class="form-group col-md-6" align="center">
+				                  	{{ form.customer_id(placeholder="Customer ID", class_="text-field1 form-control validate-field required", **{'data-validation-type':'phone'}) }}
+				                </div>  
+				                <div class="form-group col-md-6" align="center">
+			                    	{{ form.submit(class_="btn btn-sm btn-outline-inverse2") }}
+			                    </div>
+			                </div>    
+			         	</form>
+			         	<hr>
+			        </center>
+
+			        {% if customer_found %}
+
+			        <center>
+			        	<br>
+				        <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+				        	<h5 align="left">User (Name: {{ customer.customers_firstname }}) Information</h5>
+				        	<table class="table">
+							    <thead style="font-size:20px; color:#e4d2ba">
+								    <tr>
+								        <th>ID</th>
+								        <th>Status</th>
+								        <th>Score</th>
+								        <th>Redeems</th>
+								        <th>No-show</th>
+								    </tr>
+							    </thead>
+							    <tbody style="font-size:18px;">
+								    <tr>
+								        <td>{{ customer_id }}</td>
+								        <td>{% if customer.score > 750 %}
+							                  <span style="color:#E5E4E2">Platinum</span>
+							                {% elif customer.score > 600 %}
+							                  <span style="color:#D4AF37">Gold</span>
+							                {% elif customer.score > 450 %}
+							                  <span style="color:#C0C0C0">Silver</span>
+							                {% elif customer.score > 300 %}
+							                  <span style="color:#CD7F32">Bronze</span>
+							                {% else %}
+							                  <span style="color:#0000FF">Blue</span>
+							                {% endif %}</td>
+								        <td>{{ customer.score }}</td>
+								        <td>{{ customer.redeems }}</td>
+								        <td>{{ customer.no_show }}</td>
+								    </tr>
+							    </tbody>
+							</table>
+
+							<br><br>
+
+		                	<h5 align="left"> How was this customer ? </h5>
+			             	<form class="form-style clearfix" action="{{ url_for('rating', customer_id=customer_id) }}" method="POST">
+		                      	<h6 align="left" style="color:#e4d2ba">Arrival:</h6>
+			                    <div class="radio" style="font-size:18px;" align="left">
+			                      	<div class="col-md-4">
+			                        	<label><input type="radio" name="arrival" value="-25"> No-show </label>
+			                      	</div>
+			                      	<div class="col-md-4">
+			                        	<label><input type="radio" name="arrival" value="-5"> Late </label>
+			                      	</div>
+			                      	<div class="col-md-4">			                     
+			                        	<label><input type="radio" name="arrival" value="0" checked> On time </label>
+			                      	</div>
+			                    </div>
+
+			                    <br><br>
+
+			                    <h6 align="left" style="color:#e4d2ba">Overall:</h6>
+			                    <div class="col-md-4" align="left">
+			                    	<p style="font-size:14px;">1 = Never again</p>
+			                    </div>
+			                    <div class="col-md-offset-4 col-md-4" align="left">
+			                    	<p style="font-size:14px;">5 = Loved the customer</p>
+			                   	</div>
+
+								<div class="radio" style="font-size:18px;" align="left">
+			                      	<div class="col-md-2">
+			                        	<label><input type="radio" name="overall" value="-10"> 1 </label>
+			                      	</div>
+			                      	<div class="col-md-2">
+			                        	<label><input type="radio" name="overall" value="-5"> 2 </label>
+			                      	</div>
+			                      	<div class="col-md-2">			                     
+			                        	<label><input type="radio" name="overall" value="0" checked> 3 </label>
+			                      	</div>
+			                      	<div class="col-md-2">
+			                        	<label><input type="radio" name="overall" value="5"> 4 </label>
+			                      	</div>
+			                      	<div class="col-md-2">
+			                        	<label><input type="radio" name="overall" value="10"> 5 </label>
+			                      	</div>
+			                    </div>
+			                      
+			                    <div class="col-md-12 form-group">
+			                    	<br><br>
+			                        <input type="submit" class="btn btn-sm btn-outline-inverse2" value="Submit"/>
+			                        <img src="/images/theme_images/loader-form.GIF" class="form-loader">
+			                        <br><br>
+			                    </div>
+
+			                </form>
+	            		</div>
+	            	</cneter>
+
+		           	{% endif %}
+	          	
+	          		<div class="content-to-populate-in-modal" id="{{show1}}">
+		            	<h4><span class="icon fa fa-user"></span> No user found. </h4>
+		          	</div>
+
+		          	<div class="content-to-populate-in-modal" id="{{show2}}">
+		                <h4><span class="icon fa fa-pencil-square"></span> Thank you for rating! </h4>
+		              	<p style="font-size:20px;"> The user's score has been updated.</p>
+		            </div>
+
+	            </div>
+          	</div><!-- .content-wrapper -->
+        </article><!-- .section-wrapper -->
+
+
+
+{% endblock %}
+
+
+
+

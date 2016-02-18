@@ -1,0 +1,123 @@
+{% extends "base2.html" %}
+
+{% block title %}
+
+Questions
+
+{% endblock %}
+
+{% block body %}
+
+<!--title-->
+<center> 
+
+  <a href="/">
+      <img src = "/images/other_images/folder.jpg" style="width:35px; left:-130px;position:relative;margin-top:-160px;"> 
+  </a>
+
+
+  <h5 style="position:relative;margin-top:-100px;font-family:helvetica;font-size:20px;left:-40px"> <a href="/" style="color:white;font-family:helvetica;font-size:20px;"> DINERSCODE <a> </h5> 
+</center>
+
+<!--container-->
+ <div class="my-fluid-container" data-spy="scroll"  >
+        <article >
+
+          <div id="questions" class="section">  
+           
+            
+
+              <div align="center">        
+                <h6 style="color:#31859B;position:relative;top:70px;">Please answer the 3 questions to complete your sign up</h6>
+              </div>
+            
+            <!--FORM-->
+              
+              <form class="form-style validate-form clearfix" action="{{ url_for('questions') }}" method="POST" style="position:relative;top:30px;">
+
+                <!--section-->
+                <section class="feature-text">
+                  <div class="form-group form-general-error-container" ></div>
+              <center>
+
+            
+        
+                  <div class="form-group col-md-6" >
+                      <strong>
+                      <p style="font-size:18px;color:black;position:relative;top:20px;"> 1. Your age group
+                      </p>        
+                      </strong>
+
+                      <br>
+
+                      <div class="form-group" style="color:black;font-family:helvetica">
+                      <p> {{form.choices(class_="radiobutton" )}}  </p>   
+                      </div>
+
+                  </div>
+
+                  <div class="form-group col-md-6" >
+                    
+                    <strong>
+                    <p style="font-size:18px;color:black;position:relative;top:20px;">  2. Your Zip Code
+                    </p>   
+                    </strong>
+                       
+                    <div class="form-group" style="max-width:200px;">
+                       {{ form.customers_zipcode(placeholder="", class_="text-field form-control validate-field required", **{'data-validation-type':'zipcode'}) }}
+                    </div>
+
+                    <strong>
+                    <p style="font-size:18px;color:black;position:relative;top:20px;">  3. Your typical dining out cost per person- including tip</p>  
+                     </strong>
+
+                    <div class="form-group" style="max-width:200px;">
+                       {{ form.customers_cost(placeholder="$", class_="text-field form-control validate-field required", **{'data-validation-type':'budget'}) }}
+                    </div>
+
+                    <p style="font-size:15px; color:gray;font-style:italic";>Please make sure it’s the price point of restaurants you usually go to, so you can get the best out of the pass
+                    </p>        
+               
+                </div>
+             
+
+
+
+                <div class="col-md-12" >
+
+                <!--SUBMIT BUTTON-->  
+        
+                <div class="col-md-12 form-group" align="center" style="position:relative;bottom:float" >   
+                    {{ form.submit(class_="btn btn-lg btn-outline-inverse") }}
+                    <img src="images/theme_images/loader-form.GIF" class="form-loader">
+                </div>
+
+              </div>
+
+              </center>
+
+
+
+
+
+                </section>
+              </form>
+                            
+           
+           
+             </div>
+          
+        </article><!-- .section-wrapper -->
+
+                  <!--Contacts Tab-->
+
+                    <div id="contact" class="section">
+
+                      <center><h6 style=""><a href="/contact">Contact us</a> - <a href="https://www.neurodining.com/privacypolicy">Privacy </a></h6></center>
+
+
+
+                    </div>
+      </div>
+
+{% endblock %}

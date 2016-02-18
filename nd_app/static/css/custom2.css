@@ -1,0 +1,64 @@
+#intro-bg {
+	background-image: url('../images/korea.jpg');
+	background-size:cover;
+	opacity:.85;
+}
+
+#intro-jumbo {
+background-color: rgba(255, 255, 255, 0.75);
+}
+
+.carousel-indicators {
+ margin-top:-10px;
+ 	}
+
+#Projects {
+background-image: url('../images/green1.jpg');
+background-size:cover;
+ background-color: #99c199;
+}
+
+#Projects .item a :hover{
+
+   
+ }
+
+#About hr{
+	margin-top:40px;
+}
+#Projects hr{
+margin-top:40px;
+}
+
+#Experience hr {
+	margin-top:40px;
+}
+
+#Contact {
+	background-color:#C0D9AF;
+	
+}
+
+#Contact hr{
+	margin-top:40px;
+
+	
+}
+
+#brand a:hover {
+    
+	 background-color:#C0D9AF;
+
+}
+
+#brand.active a{
+
+}
+
+#main-nav a:hover{
+	  background-color:#C0D9AF;
+}
+
+#main-nav .active > a{
+	
+}

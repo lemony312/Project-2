@@ -1,0 +1,49 @@
+{% extends "baseadmin.html" %}
+
+{% block title %}
+
+Password
+
+{% endblock %}
+
+{% block body %}
+
+
+        <article id="contact" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic18.png" >
+          <div class="content-wrapper clearfix">
+            <h1 class="section-title pull-left" style="font-size:30px;">Change Password</h1>
+
+            <form class="form-style validate-form clearfix" action="{{ url_for('restaurant_account') }}" method="POST" role="form">
+
+              {{ form.hidden_tag()}}
+
+              <div class="col-md-offset-1 col-md-10">
+                <div class="form-group form-general-error-container"></div>
+                <div class="form-group">
+                  {{ form.pass_raw(placeholder="New Password", class_="text-field1 form-control validate-field required", **{'data-validation-type':'password'}) }}
+                </div> 
+                <div class="form-group">
+                  {{ form.confirm(placeholder="Confirm Password", class_="text-field1 form-control validate-field", **{'data-validation-type':'cfm_password'}) }}
+                </div>
+                <br>
+                <div class="form-group">
+                  {{ form.pass_old(placeholder="Current Password", class_="text-field1 form-control validate-field required", **{'data-validation-type':'password'}) }}
+                </div>
+                <div class="form-group" align="center">
+                  <img src="images/theme_images/loader-form.GIF" class="form-loader">   
+                  {{ form.update(class_="btn btn-sm btn-outline-inverse2") }}
+
+                </div>
+              </div>
+
+            </form>
+
+            <div class="content-to-populate-in-modal" id="account_updated">
+              <h5><span class="icon fa fa-cutlery"></span>  Your password has been changed.</h5>
+            </div><!-- #modal-content-1 -->
+
+          </div>
+        </article><!-- .section-wrapper -->
+
+{% endblock %}
+

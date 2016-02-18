@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Description
+
+{% endblock %}
+
+{% block body %}
+
+        <article id="text" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic12.png">
+          <div class="content-wrapper clearfix" >
+            <div class="col-md-offset-1 col-md-10">
+              <h1 class="section-title" style="font-size:25px;" align="left">{{rstrnt.restaurant_name}}</h1>
+
+              <p class="star-ratings-sprite pull-left"><span style="width:{{ rating }}%" class="rating"></span></p>
+              <p style="font-size:18px;" align="left">
+              &nbsp;| {% for i in range(price) %} <span>$</span> {% endfor %} | {{rstrnt.cuisine_type}} | {{rstrnt.area}}
+              </p>
+
+              <h6 style="color:#FF9933" align="left"> {{rstrnt.perk}} </h6>
+
+              <div class="row">
+                              
+                <div class="col-md-12">
+                  <div id="description-image-slider" 
+                  style="width:100%; position:relative;"  
+                  class="owl-carousel popup-image-gallery">
+                    <!-- slide -->
+                    {% for gall in galls %}
+                      <div class="wrapper" style="overflow:hidden;width:100%;">
+ 
+                            <img class="owl-lazy"
+                    
+                            data-src="http://admin.neurodining.com/images/gallery/{{gall.uploaded_file}}" 
+                            style="text-align:center;
+                            position:relative;
+                             padding:2px;
+                              background-size:cover;
+                              width:360px;height:240px;"
+                             align ="center"
+                        
+                             onerror="this.src='/images/gallery/default.jpg'">
+                     
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                
+              </div>
+
+              <div align="center">
+                {% if menu_exist==True %}
+                  <p style="font-size:14px;"><a href="http://maps.google.com/?q={{rstrnt.street_address}} {{rstrnt.area}} New York City" target="_blank"><span class="icon fa fa-map-marker"></span> {{rstrnt.street_address}}</a> |
+                   <a href="" onclick="populate_and_open_modal(event, 'categories');">{{rstrnt.category}} <span class="icon fa fa-question"></span></a> |
+                   <a href="{{rstrnt.menu_link}}" target="_blank">View Menu</a>
+                  </p>
+                  {% for descstr in descstrs %}
+                    {% if descstr == 'WHY WE LIKE IT' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY TIMES SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY MAG SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'ZAGAT SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN ONE STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN TWO STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN THREE STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'ESQUIRE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'TIME OUT MAGAZINE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'TIME OUT SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'RESTAURANT MOTTO' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY MAGAZINE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'SPECIALITY ITEMS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'PRE-FIXE MENU ONLY' %}
+                      <div style="color:red">{{descstr}}</div>
+                    {% elif descstr == 'PREFIX MENU ONLY Jacket required' %}
+                      <div style="color:red">{{descstr}}</div>
+                    {% elif descstr == 'CASH ONLY' %}
+                      <div style="color:red;">{{descstr}}</div>
+                    {% else %}
+                      <div style="font-size:13px;">{{descstr}}<br></div>
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  <p style="font-size:14px;"><a href="http://maps.google.com/?q={{rstrnt.street_address}} {{rstrnt.area}} New York City" target="_blank"><span class="icon fa fa-map-marker"></span> {{rstrnt.street_address}}</a> |
+                   <a href="" onclick="populate_and_open_modal(event, 'categories');">{{rstrnt.category}} <span class="icon fa fa-question"></span></a>
+                  </p>
+                  {% for descstr in descstrs %}
+                    {% if descstr == 'WHY WE LIKE IT' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY TIMES SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY MAG SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'ZAGAT SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN ONE STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN TWO STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'MICHELIN THREE STAR 2015' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'ESQUIRE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'TIME OUT MAGAZINE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'TIME OUT SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'RESTAURANT MOTTO' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'NY MAGAZINE SAYS' %}
+                      <div style="color:#e4d2ba;">{{descstr}}</div>
+                    {% elif descstr == 'PRE-FIXE MENU ONLY' %}
+                      <div style="color:red">{{descstr}}</div>
+                    {% elif descstr == 'PREFIX MENU ONLY Jacket required' %}
+                      <div style="color:red">{{descstr}}</div>
+                    {% elif descstr == 'CASH ONLY' %}
+                      <div style="color:red;">{{descstr}}</div>
+                    {% else %}
+                      <div style="font-size:13px;">{{descstr}}<br></div>
+                    {% endif %}
+                  {% endfor %}
+                {% endif %}
+
+                <form class="form-style validate-form clearfix" action="{{ url_for('description') }}" method="POST">
+                  <div class="form-group form-general-error-container"></div>
+                  <div class="form-group">
+                    {{ form.submit(class_="btn btn-lg btn-outline-inverse") }} 
+                    <img src="/images/theme_images/loader-form.GIF" class="form-loader">
+                  </div>
+                </form>
+              </div>
+
+              <div class="content-to-populate-in-modal" id="categories">
+                <div align="left">
+                  {% for rstcateg in rstcategs %}
+                    <div class="row">
+                      <div class="col-md-1">
+                      </div>
+                      <div class="col-md-3">
+                        <h5><span class="icon fa fa-coffee"></span> <span style="color:#e4d2ba;">{{rstcateg.title}}</span></h5>
+                      </div>
+                      <div class="col-md-8">
+                        <p>{{rstcateg.description}}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="content-to-populate-in-modal" id="redeem">
+                <div id="redeem-modal">
+                  <div style="border-width: 4px;border-style: solid; color: #85888d;">
+                    <h1 class="rstname">{{rstrnt.restaurant_name}}</h1>
+                  </div>
+                  <p class="perks" style="color: #FF9933; margin: 40px 0 40px; font-size: 25px; font-weight: bold;"> {{rstrnt.perk}} </p>
+                  <p class="content"> {{rstrnt.redeem}} </p>
+                  {% if text_concierge %}
+                  {% else %}
+                    <!-- <p class="content"><span class="icon fa fa-phone"></span> {{rstrnt.phone}} </p> -->
+<!--                     <p class="content"> DinersCode ID: {{customer_id}} </p>
+                    <p class="content"> Valid until: {{valid_date}} </p> -->
+                    <p class="content">
+                      DinersCode ID: {{customer_id}}
+                      <br/>
+                      Valid until: {{valid_date}}
+                    </p>
+                  {% endif %}
+                  <p style="font-size: 17px;">
+                    <a href="http://maps.google.com/?q={{rstrnt.street_address}} {{rstrnt.area}} New York City" target="_blank"><span class="icon fa fa-map-marker"></span> {{rstrnt.street_address}}</a>
+                    |
+                    {{rstrnt.phone}}
+                  </p>
+                  <p class="disclaimer"> The eateries reserve the right to change the perks based on their availability. </p>
+                </div>
+              </div>
+
+            </div><!-- .col-sm-10 -->
+          </div><!-- .content-wrapper -->
+        </article><!-- .section-wrapper -->
+
+{% endblock %}
+
+
+

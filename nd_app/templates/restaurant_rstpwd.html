@@ -1,0 +1,59 @@
+{% extends "base4.html" %}
+
+{% block title %}
+
+Reset Password
+
+{% endblock %}
+
+{% block body %}
+
+        <article >
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+
+              <div class="logo" align="center">
+                <a href="http://www.dinerscode.com" class="link-scroll"><img src="images/other_images/logo.png" style="width:20%;padding-top:15px; padding-bottom:15px;"alt="NeuroDining"></a>
+              </div>
+
+              <div align="center">
+                <h4 style="margin-top:45px;">Reset Password</h4>
+              </div>
+
+              <div id="change_content">
+                <div align="center">
+                  <p>Please check your email for your reset pin.</p>
+                </div>
+
+                <form class="form-style validate-form clearfix" action="{{ url_for('restaurant_rstpwd') }}" method="POST">
+                  <section class="feature-text">
+                    <div class="form-group form-general-error-container"></div>
+                    <div class="form-group">
+                      {{ form.pass_raw(id="pass_raw", placeholder="New Password", class_="text-field1 form-control validate-field required", **{'data-validation-type':'password'}) }}
+                    </div> 
+                    <div class="form-group">
+                      {{ form.confirm(placeholder="Confirm Password", class_="text-field1 form-control validate-field required", **{'data-validation-type':'cfm_password'}) }}
+                    </div> 
+                    <div class="form-group">
+                      {{ form.pin_num(placeholder="PIN", class_="text-field1 form-control validate-field required", **{'data-validation-type':'string'}) }}
+                    </div> 
+                    <div class="form-group" align="center"> 
+                      {{ form.reset_submit(class_="btn btn-lg btn-outline-inverse") }}
+                      <img src="images/theme_images/loader-form.GIF" class="form-loader">  
+                    </div>
+                  </section>
+                </form>
+
+                <div align="center">
+                  <p>Click <a href="/restaurant_fgpwd">here</a> to get a new PIN.</p>
+                </div>
+              </div>
+
+            </div><!-- .col-sm-10 -->
+            <div class="col-lg-4">
+            </div>
+          
+        </article><!-- .section-wrapper -->
+
+{% endblock %}

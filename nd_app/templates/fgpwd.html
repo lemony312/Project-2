@@ -1,0 +1,52 @@
+{% extends "base2.html" %}
+
+{% block title %}
+
+Forget Password
+
+{% endblock %}
+
+{% block body %}
+
+        <article class="section-wrapper clearfix" data-custom-background-img="images/other_images/blue.jpg"  >
+          
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4"  >
+            
+             <div id="outer-container" style="background:rgba(0,0,0,0.0);" >
+              <div class="logo" align="center" >
+                <a href="http://www.dinerscode.com" class="link-scroll"><img src="/images/other_images/folder.jpg" style="width:60px;padding-top:15px; padding-bottom:15px;" alt="DinersCode"></a>
+              </div>
+
+              <div align="center">
+                <h4 style="margin-top:45px;">Reset Password</h4>
+                <p>Enter your email address to reset your password.</p>
+              </div>
+
+              <form class="form-style validate-form clearfix" action="{{ url_for('fgpwd') }}" method="POST">
+                <section class="feature-text">
+                  <div class="form-group form-general-error-container"></div>
+                  <center>
+                  <div class="form-group" style="max-width:500px;">
+                    {{ form.customers_email_address(placeholder="Email Address", class_="text-field1 form-control validate-field required", **{'data-validation-type':'email'}) }}
+                  </div>  
+                </center>
+                  <div class="form-group" align="center"> 
+                    {{ form.submit(class_="btn btn-lg btn-outline-inverse") }}
+                    <img src="images/theme_images/loader-form.GIF" class="form-loader">  
+                  </div>
+                </section>
+              </form>
+
+              <div align="center">
+                <p>Click <a href="/login">here</a> to login.</p>
+              </div>
+
+            </div><!-- .col-sm-10 -->
+            <div class="col-lg-4">
+            </div>
+           </div>
+        </article><!-- .section-wrapper -->
+
+{% endblock %}

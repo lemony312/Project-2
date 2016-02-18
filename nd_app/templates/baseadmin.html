@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="images/other_images/logo_app.png">
+   
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- vegas bg -->
+    <link href="/js/vegas/jquery.vegas.min.css" rel="stylesheet">
+    <!-- owl carousel css -->
+    <!--
+    <link href="/js/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/js/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="/js/owl-carousel/owl.transitions.css" rel="stylesheet">
+    -->
+    <!--owl carousel 2.0 css -->
+
+    <link href="/js/owl-carousel-2/owl.carousel.js" rel="stylesheet">
+    <link href="/js/owl-carousel-2/assets/owl.carousel.css" rel="stylesheet">
+  
+
+    <!-- intro animations -->
+    <link href="/js/wow/animate.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- lightbox -->
+    <link href="/js/lightbox/css/lightbox.css" rel="stylesheet">
+
+    <!-- styles for this template -->
+    <link href="/css/styles.css" rel="stylesheet">
+
+     <!-- place your extra custom styles in this file -->
+    <link href="/css/custom.css" rel="stylesheet">
+       <script src="/js/Jssor.Slider.FullPack/js/jquery.min.js"></script>
+                           <script src="/js/Jssor.Slider.FullPack/js/jssor.slider.mini.js"></script>
+
+
+
+    {% block javascript %}{% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+ <body  data-overlay="true" data-overlay-opacity="0.75" >
+
+
+    <!-- Outer Container -->
+    <div id="outer-container">
+
+      <!-- Left Sidebar -->
+      <section id="left-sidebar" style="background:rgba(0,0,0,1.0);">
+            
+        <!-- Menu Icon for smaller viewports -->
+        <div id="mobile-menu-icon" style="height:5px;" class="visible-xs" onClick="toggle_main_menu();"><span class="glyphicon glyphicon-th" onmouseover="this.style.color='#FFCC99';" onmouseout="this.style.color='white';" style="color: white; right:-20px; margin-top: 10px;display:inline-block;" ></span></div>
+
+      <center>
+        <div style="height:55px; width:65px; " >
+          <a href="/rating"  class="link-scroll"><img src="/images/other_images/logo_app.png" style ="width:60%; padding-top:12px;"alt="DINERSCODE"></a>
+        </div><!-- .logo -->
+      </center>
+
+        <ul id="main-menu" style="padding-top:15px;">
+          <li class="menu-item scroll" ><a href="/rating" onmouseover="this.style.color='#d9c09e';" onmouseout="this.style.color='white';">Evaluation</a></li>
+          <li class="menu-item scroll" ><a href="/restaurant_account" onmouseover="this.style.color='#d9c09e';" onmouseout="this.style.color='white';">Password</a></li>
+          <li class="menu-item scroll" ><a href="/restaurant_feedback" onmouseover="this.style.color='#d9c09e';" onmouseout="this.style.color='white';">Feedback</a></li>
+          <li class="menu-item scroll" ><a href="/rating_logout" onmouseover="this.style.color='#d9c09e';" onmouseout="this.style.color='white';">Log Out</a></li>
+        </ul><!-- #main-menu -->
+
+      </section><!-- #left-sidebar -->
+
+      <section id="main-content" class="clearfix">
+
+        <div class="content-wrapper clearfix">
+            <div align="right">
+              <p style="font-size:18px;">
+                <span class="icon fa fa-cutlery"></span> DinersCode Username: {{ restaurant_id }}
+              </p>
+            </div>
+        </div>
+
+        {% block body%}{% endblock %}
+
+      </section><!-- #main-content -->
+
+      <!-- Footer -->
+      <section id="footer">
+
+        <!-- Go to Top -->
+        <div id="go-to-top" onclick="scroll_to_top();"><span class="icon glyphicon glyphicon-chevron-up"></span></div>
+
+        <ul class="social-icons">
+          <li><a href="http://www.facebook.com/dinerscode" target="_blank" title="Facebook"><img src="/images/theme_images/social_icons/fs.png" alt="Facebook"></a></li>
+          <li><a href="mailto:contact@dinerscode.com" target="_blank" title="Mail"><img src="/images/theme_images/social_icons/email.png" alt="Mail"></a></li>
+        </ul>
+
+        <!-- copyright text -->
+        <div class="footer-text-line">&copy; 2015 Point Taken LLC. All rights reserved.</div>
+      </section>
+      <!-- end: Footer -->      
+
+    </div><!-- #outer-container -->
+    <!-- end: Outer Container -->
+
+    <!-- Modal -->
+    <!-- DO NOT MOVE, EDIT OR REMOVE - this is needed in order for popup content to be populated in it -->
+    <div class="modal fade" id="common-modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="modal-body clearfix">
+          </div><!-- .modal-body -->
+        </div><!-- .modal-content -->
+      </div><!-- .modal-dialog -->
+    </div><!-- .modal -->    
+
+    <!-- Javascripts
+    ================================================== -->
+
+    <!-- Jquery and Bootstrap JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Easing - for transitions and effects -->
+    <script src="/js/jquery.easing.1.3.js"></script>
+
+    <!-- background image strech script -->
+    <script src="/js/vegas/jquery.vegas.min.js"></script>
+
+    <!-- detect mobile browsers -->
+    <script src="/js/detectmobilebrowser.js"></script>
+
+    <!-- detect scrolling -->
+    <script src="/js/jquery.scrollstop.min.js"></script>
+
+    <!-- owl carousel js -->
+    <script src="/js/owl-carousel/owl.carousel.min.js"></script>
+
+    <!-- lightbox js -->
+    <script src="/js/lightbox/js/lightbox.min.js"></script>
+
+    <!-- intro animations -->
+    <script src="/js/wow/wow.min.js"></script>
+
+    <!-- responsive videos -->
+    <script src="/js/jquery.fitvids.js"></script>
+
+    <!-- Custom functions for this theme -->
+    <script src="/js/functions.js"></script>
+    <script src="/js/initialise-functions.js"></script>
+
+    <!-- Stripe js -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    
+
+    <!-- IE9 form fields placeholder fix -->
+    <!--[if lt IE 9]>
+    <script>contact_form_IE9_placeholder_fix();</script>
+    <![endif]-->  
+
+  </body>
+</html>

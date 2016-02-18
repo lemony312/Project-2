@@ -1,0 +1,55 @@
+{% extends "base4.html" %}
+
+{% block title %}
+
+Login
+
+{% endblock %}
+
+{% block body %}
+
+        <article id="grid" class="section-wrapper clearfix" data-custom-background-img="images/other_images/pic2.png">
+            
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4" >
+
+          
+              <div align="center">
+                <h4 style="margin-top:25px; padding-top:50px;">Welcome to DinersCode</h4>
+                <p>Login and get the perks only for you!</p>
+              </div>
+
+              <form class="form-style validate-form clearfix" action="{{ url_for('login') }}" method="POST" style="padding-top:15px;">
+                <section class="feature-text">
+                  <div class="form-group form-general-error-container"></div>
+                  <center>
+                  <div class="form-group" style="max-width:500px;">
+                    {{ form.customers_email_address(placeholder="Email Address", class_="text-field1 form-control validate-field required", **{'data-validation-type':'email'}) }}
+                  </div>
+                  <div class="form-group" style="max-width:500px;">
+                    {{ form.pass_raw(placeholder="Password", class_="text-field1 form-control validate-field required") }}
+                  </div>
+                  <div class="form-group" style="max-width:500px;">
+                    {{ form.remember_me }}Keep me logged in
+                  </div>
+                </center>
+                  <div class="form-group" align="center">
+                    {{ form.signin_submit(class_="btn btn-lg btn-outline-inverse2") }}
+                    <img src="images/theme_images/loader-form.GIF" class="form-loader">   
+                  </div>
+                </section>
+              </form>
+
+              <div align="center">
+                <p><a href="/fgpwd">Forgot your password?</a></p>
+                <p>Not a member yet? Click <a href="/">here</a> to sign up.</p>
+              </div>
+
+            </div><!-- .col-sm-10 -->
+            <div class="col-lg-4">
+            </div>
+          
+        </article><!-- .section-wrapper -->
+
+{% endblock %}

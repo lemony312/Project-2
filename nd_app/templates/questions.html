@@ -1,0 +1,98 @@
+{% extends "base2.html" %}
+
+{% block title %}
+
+Questions
+
+{% endblock %}
+
+{% block body %}
+
+<!--title-->
+<center>
+  <div id ="logo">
+    <a href ="/"><img src = "/images/other_images/folder.jpg"></a>
+    <h6 id="dinerstitle"><a href="/"> DINERSCODE </a></h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class = "col-md-12" id="login_link" align="right">
+      <a href="/login">Login</a>
+    </div>
+  </div>
+</center>
+
+<!--container-->
+ <div class="my-fluid-container" data-spy="scroll"  >
+  <article>
+    <div id="questions" class="container">
+      <div class="row">
+        <div align="center">
+          <h6 class ="questionTitle" style="padding-top:5%">Please answer the 3 questions to complete your sign up</h6>
+        </div>
+        <br>
+      </div>
+
+      <div class="row">
+
+        <!--FORM-->
+        <form class="form-style validate-form clearfix" action="{{ url_for('questions') }}" method="POST">
+
+          <div class="form-group col-md-3" align="left" style="padding-left:5%">
+            <strong><p style="color:#000000;">1. Your age group</p></strong>
+            <span class="form-group" style="color:black; font-family:helvetica;">
+              {{form.age(class_="radiobutton" )}}
+            </span>
+          </div>
+
+          <div class="form-group col-md-3" align="left" style="padding-left:5%">
+            <strong><p style="color:#000000;">  2. Your Zip Code</p></strong>
+            <p id="zipfield" style="max-width:200px;">
+              {{ form.zip_code(class_="text-field form-control validate-field required", **{'data-validation-type':'zipcode'}) }}
+            </p>
+          </div>
+
+          <div class="form-group col-md-5" align="left" style="padding-left:5%">
+            <strong><p style="color:#000000;">3. Your typical dining out cost per person</p></strong>
+            <strong><p style="color:#000000; margin-top:-3%;">- including tip and tax</p></strong>
+
+            <div style="max-width:200px;">
+              {{ form.cost(placeholder="$", class_="text-field form-control validate-field required", **{'data-validation-type':'budget'}) }}
+            </div>
+
+            <p class="cost_subtitle" >Please do not input $(dollar symbol) in this box and make sure it’s the price point of restaurants you usually go to, so you can get the best out of the pass</p>
+
+          </div>
+
+          <div class="col-md-1"></div>
+
+          <div class="col-md-12">
+            <center>
+              <!--SUBMIT BUTTON-->
+              <div>
+                <br>
+                {{ form.submit(class_="btn btn-lg btn-outline-inverse") }}
+                <img src="images/theme_images/loader-form.GIF" class="form-loader">
+                <br><br><br><br>
+              </div>
+            </center>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </article><!-- .section-wrapper -->
+
+    <!--Contacts Tab-->
+  <div id="contact" class="section">
+    <div class="col-sm-12" style="color:#000000;">
+      <h6>
+        <a href="/contact" style="color:#000000;">Contact us</a>  -
+        <a href="/privacypolicy" target="_blank" style="color:#000000;">Privacy</a> -
+        <a href="/terms" target="_blank" style="color:#000000;">Terms of Service  </a> -
+        <a href="/faq" target="_blank" style="color:#000000;">FAQ</a>
+      </h6>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

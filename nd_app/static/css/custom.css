@@ -1,0 +1,234 @@
+/* It is recommended to place all your extra/additional CSS rules here */
+
+/* --------------RADIO BUTTONS ----------------- */
+
+ul {
+	list-style-type: none;
+}
+
+.btn-radio > li {
+	display: inline;
+}
+
+.btn-radio > li >input {
+	left: -999em;
+    position: absolute;
+}
+
+.btn-radio > li > label{
+
+}
+
+.btn-radio > li > input:checked + label{
+	color: #fff;
+	text-shadow: none;
+}
+
+.btn-radio > li:hover > label,
+.btn-radio > li:focus > label,
+.btn-radio > li:active > label{
+	color: #fff;
+	text-shadow: none;
+}
+
+.membership-error-msg {
+	display: block;
+	background:#fff;
+    color:#a10000;
+    font-size: 0.7em;
+    font-family: 'open_sansbold', sans-serif;
+    border-radius: 0;
+    padding:8px 10px;
+}
+
+#left-sidebar .logo :hover {
+	content: url('/images/other_images/ndlogo.png');
+	width:76%;
+}
+
+.small-font p{
+	font-size: 0.8em;
+}
+
+.small-font input[type="text"]{
+	font-size: 0.8em;
+}
+
+#preload {
+	display: none;
+}
+
+#left-sidebar #main-menu a:hover {
+	 color: #d9c09e;
+}
+
+	#Home .vertical-push {
+		padding-top: 10%;
+	}
+
+	#intro-bg {
+		background-image: url('../images/other_images/drinks.jpg');
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		/*background-size: 100% auto;*/
+		background-attachment: fixed;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		margin-top: -50px;
+	}
+
+body {
+	background: #2B353E;
+	margin: 0;
+	padding: 0;
+}
+
+input[type="range"] {
+	-webkit-appearance: none;
+	background-color: gray;
+	height: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	position: relative;
+	top: 0px;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(50%,#abd3ee), color-stop(51%,#89c3eb), color-stop(100%,#d5ebfb));
+}
+
+.form-style input.text-field2,
+.form-style textarea {
+    background:#fff;
+    border-color:#4F81BD;
+    color:#000;
+    height:34px;
+ -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;   
+     border-width: 2px;
+     min-height:50px;
+     min-width:250px;
+}
+
+.form-style input.text-field2::-webkit-input-placeholder,
+.form-style input.text-field2:-moz-placeholder,
+.form-style input.text-field2::-moz-placeholder,
+.form-style input.text-field2:-ms-input-placeholder {
+    color:gray !important;
+    font-weight: bold;
+}
+
+.form-style input.text-field2:focus,
+.form-style textarea:focus {
+    color:#000;
+    background:#fff;
+    border-color:#4F81BD;
+    border-width: 3px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none;  
+    min-height:50px;
+}
+
+.form-style input.text-area,
+.form-style textarea {
+    background:rgba(0,0,0,0.15);
+    border-color:#fff;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;  
+    color:#fff;
+    height:192px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none; 
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    border-width: 2px;
+
+}
+
+.form-style input.text-area::-webkit-input-placeholder,
+.form-style input.text-area:-moz-placeholder,
+.form-style input.text-area::-moz-placeholder,
+.form-style input.text-area:-ms-input-placeholder {
+    color:#fff !important;
+    font-weight: bold;
+}
+
+.form-style input.text-area:focus,
+.form-style textarea:focus {
+    color:#000;
+    background:#fff;
+    border-color:#fff;
+    -webkit-box-shadow: none;
+    -moz-box-shadow:    none;
+    box-shadow:         none;  
+}
+
+/* center columns and rows for bootstrap grid */
+.row-centered {
+	text-align: center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    margin: auto;
+}
+/* end */
+
+/* redeem modal */
+#redeem-modal {
+	margin: 10px 0 50px;
+}
+#redeem-modal .rstname {
+	color: white;
+	margin: 12px 0;
+	font-size: 30px;
+}
+#redeem-modal .perks {
+	color: #FF9933;
+	margin: 30px 0 45px;
+	font-size: 25px;
+	font-weight: bold;
+}
+#redeem-modal .content {
+	font-weight: bold;
+	font-size: 20px;
+}
+#redeem-modal .disclaimer {
+	margin-top: 60px;
+	margin-bottom: -90px;
+	font-size: 15px;
+}
+/* end redeem model */
+
+/* restaurant listing on home page */
+/*.rst-listing .perk-logo {
+	float: right;
+	margin: 0 0 0 10px;
+}
+*//* end restaurant listing on home page */
+
+/* register form */
+@media (min-width: 768px) {
+	#register-form input {
+		margin-top: 35px;
+	}
+}
+#register-form .btn {
+	margin-top: 60px;
+}
+/* end */

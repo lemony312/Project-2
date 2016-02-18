@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+	<head>
+		<link rel="stylesheet" type="text/css" href="transparent_dropdown.css">
+		<style>
+		#my_form
+		{		
+			background-color: transparent;
+		}
+		</style>
+	</head>
+{% block title %}
+
+DinersCode | Your Perks
+
+{% endblock %}
+
+{% block body %}
+
+        <article id="featured" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic11.png">
+        	<div class="content-wrapper clearfix">
+		        <div class="col-md-12" alien="center">
+		            <h1 class="section-title" style="font-size:30px;" align="left">Find Your Perks</h1>
+
+		          	<center>
+
+		                <!-- <form class="form-style validate-form clearfix" action="{{ url_for('home') }}" method="POST" role="form"> -->
+		                <form class="form-style clearfix" id="my_form" action="{{ url_for('home') + '?search=true' }}" method="POST" role="form">
+
+				            	<div class="col-md-6" align="center">
+				            		<div class="form-group">
+		                        		<p style="font-size:18px;">
+					            			<label class="sr-only">Search Restaurant</label>
+		                        			{{form.search_key(class="form-control", placeholder="Search Restaurant or Cusine", onclick="select()")}}
+	                        			</p>
+		                        	</div>
+		                        </div>
+		
+		                        <div class="col-md-3" align="center">
+				            		<div class="form-group" >
+		                        		<p style="font-size:18px;">
+					            			<label class="sr-only">Area</label>
+		                        			{{form.place(class_="btn btn-default dropdown-toggle form-control")}}
+		                        		</p>
+		                        	</div>
+		                        </div>
+		                        <div class="col-md-3" align="center">
+				            		<div class="form-group" >
+		                        		<p style="font-size:18px;">
+					            			<label class="sr-only">Color</label>
+		                        			{{form.rank(class_="btn btn-default dropdown-toggle form-control")}}
+		                        		</p>
+		                        	</div>
+		                        </div>
+		             			<div class="col-md-12" align="center">
+				            		<div class="form-group" >
+		                        		<p style="font-size:18px;">
+		                        			{{ form.submit(class_="btn btn-xs btn-outline-inverse2") }}
+		                        		</p>
+		                        	</div>
+		                        </div>	
+		             	</form>
+
+		             	{% if success %}
+						<section class="feature-columns row clearfix">
+						<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		                    {% for rstrnt in rstrnts %}
+
+		                      <article class="feature-col col-md-4 rst-listing">
+		                        <a href="{{ url_for('description',rstrnt_id=rstrnt[0].id) }}" class="thumbnail linked" style="max-width:600px;">
+
+		                          <div class="image-container" style="width:100%; height:180px; text-align:center;">
+
+		                            <img data-img-src="http://admin.neurodining.com/images/gallery/{{rstrnt[1].uploaded_file}}" class="lazy item-thumbnail" style="width:300px; height:180px; text-align:center; " onerror="this.src='/images/gallery/default.jpg'">
+
+		                          </div>
+		                          <!--===============CAPTION =================-->
+		                          <div class="caption" style="height:180px;">
+		                            <h5>{{rstrnt[0].restaurant_name}}</h5>
+		                            <!-- <p class="perk-logo"> logo </p> -->
+		                            <p style="font-size:18px;">{{rstrnt[0].area}}</p>
+		                            <p style="font-size:18px;">{{rstrnt[0].cuisine_type}}</p>
+		                          </div>
+		                            <!--=============END CAPTION =============-->
+		                        </a><!-- .thumbnail -->
+		                      </article>
+		                    {% endfor %}
+		                </section>
+
+		            		{% if many_restaurants %}
+			                <form class="form-style clearfix" id='buttonSee' action="{{ url_for('home') + '?see_more=true' }}" method="POST">
+			                	<div class="col-md-12 form-group">
+			                        <input type="submit" class="btn btn-sm btn-outline-inverse2" value="See More"/>
+			                        <img src="/images/theme_images/loader-form.GIF" class="form-loader" id='load'style="display:none">
+			                    </div>
+				            </form>
+				            <script type="text/javascript">
+				            	$("#buttonSee").click(function(){ //shows loading gif
+					                $('#load').show();
+								});
+				            </script>
+				            {% endif %}
+
+		                {% endif %}
+
+		        	</center>
+
+		        	<div class="content-to-populate-in-modal" id="{{show}}">
+		            	<h5><span class="icon fa fa-cutlery"></span> No restaurant found. </p>
+		          	</div>
+
+		        </div>
+		    </div>
+        </article><!-- .section-wrapper -->
+
+{% endblock %}
+
+
+
+

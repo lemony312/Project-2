@@ -1,0 +1,303 @@
+{% extends "base2.html" %}
+
+{% block title %}
+
+DinersCode｜Discover great restaurants and make amazing savings
+
+{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript">
+  heightOffset=100;
+</script>
+<center>
+  <div id ="logo">
+    <a href ="/"><img src = "/images/other_images/logo_app.png"></a>
+    <h6 id="dinerstitle"><a href="/"> DINERSCODE </a></h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class = "col-md-12" id="login_link" align="right">
+      <a href="/login">Login</a>
+    </div>
+  </div>
+</center>
+
+<div class="my-fluid-container" data-spy="scroll" align="center" >
+
+  <!-- Home TAB -->
+  <div id='landing-bg'></div>
+  <div id="Home" class="container">
+
+    <div class="blocktex" align="center">
+        <div>
+          <strong><h3 style="color:#58b1c9"> FREE RESTAURANT PERKS AND DISCOUNTS </h3></strong>
+          <br/>
+        </div>
+
+        <form class="form-style validate-form clearfix" action="{{ url_for('index') }}" method="POST">
+          <div class="row">
+            <div class="col-md-10" >
+              <div class="form-group" >
+                {{ form.customers_email_address(placeholder="Email Address", class_="text-field2 form-control validate-field required", **{'data-validation-type':'email'}) }}
+              </div>
+              <div class="form-group form-general-error-container"></div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group" >
+                {{ form.signup_submit(class_="btn btn-lg btn-outline-inverse") }}
+                <img src="images/theme_images/loader-form.GIF" class="form-loader">
+              </div>
+            </div >
+          </div>
+        </form>
+        <div>
+          <p style="font-size:38px;word-wrap: break-word;white-space: pre-wrap;"> Sign up for free! Get your exciting offers at the most coveted restaurants in Manhattan. </p>
+        </div>
+    </div>
+  </div>
+
+  <!-- <div id="Service" class="container">
+    <div id="ServiceBox">
+      <div class="col-md-4">
+        <center>
+          <br><br><br>
+          <h4>The more you dine, the more perks you get!</h4>
+          <h3>BE REWARDED!</h3>
+        </center>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+            <div  class="col-xs-2" id="avatarBox">
+                <img id="avatarBox1" src="/img/index_images/BLT Steak.png" alt="" title="">
+            </div>
+
+            <div class="col-xs-2" id="avatarBox">
+                <img id="avatarBox2" src="/img/index_images/CHEFS CLUB.png" alt="" title="">
+            </div>
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/BLUE BOTTLE.png" alt="" title="">
+            </div>
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/IvanRamen.png" alt="" title="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/OOTOYA.png" alt="" title="">
+            </div>
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/MARGOT PATISSERIE.png" alt="" title="">
+            </div>
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/AMELIE WINE BAR.png" alt="" title="">
+            </div>
+            <div class="col-xs-2" id="avatarBox">
+                <img src="/img/index_images/VICE VERSA.png" alt="" title="">
+            </div>
+        </div>
+    </div>
+    </div>
+  </div> -->
+
+  <div id="Service" class="container">
+    <div id="ServiceBox">
+      <div class="row">
+        <!-- <div class="col-sm-12 col-md-4"> -->
+          <center>
+<!--            <h4 style="font-size: 25px; font-family: Geneva; color:#0c0c0c;"> Love your time out with free drinks and discounts </h4>
+            <h4 style="font-size: 25px; font-family: Geneva; color:#0c0c0c;"> Discover new restaurants approved by editors </h4>
+-->
+            <h4 style="font-size: 28px;" > Love your time out with free drinks and discounts </h4>
+            <h4 style="font-size: 28px;" > Discover our 100+ partnering restaurants in Manhattan </h4>
+            <br/>
+          </center>
+        <!-- </div> -->
+      </div>
+      <div class="row">
+      <!-- <div id ="avatarRow" class="col-sm-12 col-md-8"> -->
+        <div class="row row-centered">
+            <div  class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox1" src="/img/index_images/BLT STEAK.jpg" alt="" title="">
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox2" src="/img/index_images/CHEFS CLUB.jpg" alt="" title="">
+            </div>
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox3" src="/img/index_images/BLUE BOTTLE.jpg" alt="" title="">
+            </div>
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox4" src="/img/index_images/IvanRamen.jpg" alt="" title="">
+            </div>
+        </div>
+        <div class="row row-centered">
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox5" src="/img/index_images/OOTOYA.jpg" alt="" title="">
+            </div>
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox6" src="/img/index_images/MARGOT PATISSERIE.jpg" alt="" title="">
+            </div>
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox7" src="/img/index_images/AMELIE WINE BAR.jpg" alt="" title="">
+            </div>
+            <div class="col-xs-6 col-md-3 col-centered" id="avatarBox">
+                <img id="avatarBox8" src="/img/index_images/VICE VERSA.jpg" alt="" title="">
+            </div>
+        </div>
+      <!-- </div> -->
+      </div>
+
+      </div>
+
+  </div>
+
+
+
+  <!-- How it works TAB -->
+  <div id="HowItWorks" class="container">
+
+    <center>
+      <div class="col-sm-12 ">
+        <br><br>
+        <h3> How It Works </h3>
+      </div>
+    </center>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="select" ></div>
+        <strong><p id="howitworks1" style="color:#92CCDC;"; >STEP 1: SELECT</p></strong>
+        <p id ="howitworks1child"> Select a restaurant/bar to find out its free offer</p>
+      </center>
+    </div>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="check" ></div>
+        <strong> <p id="howitworks2" style="color:#92CCDC" >STEP 2: REDEEM </p></strong>
+        <p id="howitworks2child"> Click the redeem button to get your voucher</p>
+      </center>
+    </div>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="cup"></div>
+            <strong><p id="howitworks3" style="color:#92CCDC">STEP 3:  ENJOY </p></strong>
+            <p id="howitworks3child">Show your voucher screen to your waiter and enjoy!</p>
+            <br><br>
+      </center>
+    </div>
+
+  </div>
+
+  <!-- Our Story  -->
+  <div id="ourstory" class="container">
+    <div class="row">
+      <div class="col-sm-12" style="padding:30px">
+        <center> <h3> <br>Who We Are<br><br> </h3> </center>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-11">
+          <div id="ourstory_p_control">
+          <p>DinersCode is your one-stop destination for the best New York City restaurants perks. You can search for your free offers at restaurants, cafés and bars by neighborhood and price range. The best part: the more you dine, the more perks you get! </p><br/>
+          <p>Launched in September 2015, DinersCode was inspired by two former executives from JP Morgan and Sony, who were frustrated by the plethora of unreliable sources and ratings on the Internet. </p><br/>
+          <p>Having been to over 700 restaurants in New York City alone, we curate restaurants in your area through heavy research to ensure the quality and perks you experience. We also work directly with the restaurants to nurture the growth of New York’s dining scene.</p><br/>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Questions TAB -->
+  <div id="QuestionTab" class="container">
+    <center> <h3> <br>Questions?<br><br> </h3> </center>
+
+    <div class="row">
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote1">WHAT KIND OF PLACES CAN I GET PERKS AT?</p>
+        <p id ="quote1child">
+          We cover a wide range of popular eateries from casual sandwich joints to fine dining restaurants in Manhattan. They are all rated over 3.5 on yelp.</p>
+      </div>
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote3" >DOES EVERYONE SEE THE SAME LIST OF PERKS?</p>
+        <p id ="quote3child">
+          No. Depending on your dining frequency, preferences, and feedback from the eateries, we customize the list of eligible perks for you.</p>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote2">ARE THERE ANY HIDDEN FEES?</p>
+        <p id ="quote2child">
+          No. We are offering this service to you completely free of charge. All you have to do is love eating out!</p>
+      </div>
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote4">WOULD I ALWAYS SEE THE SAME PERKS?</p>
+        <p id ="quote4child">
+          You will see both our regular and seasonal perks. Share your favorite places with us and we will work to add them to our list.</p>
+        <br><br>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: -30px; margin-bottom: 15px;">
+      <div class="col-xs-4 col-xs-offset-8 col-md-2 col-md-offset-10">
+        <a href="/faq" style="color:black;text-decoration: underline;">See more</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!--Contacts Tab-->
+  <div id="contactinfo" class="container" style="background-color:#000000;">
+    <div class="col-xs-6 col-sm-4">
+      <div class="companyinfo">
+        <ul>
+          <li><a id="contacts_home_tab" href="/">Home</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacypolicy">Privacy</a></li>
+          <li><a href="/terms">Terms of Services</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-4">
+      <div class="socialnetworkicon">
+        <ul>
+          <li>
+              <a href="https://www.facebook.com/dinerscode" target="_blank">
+                <i class="fa fa-facebook-square"></i>
+                <span>Facebook</span>
+              </a>
+          </li>
+          <li>
+            <a href="https://twitter.com/dinerscode" target="_blank">
+                <i class="fa fa-twitter-square"></i>
+                <span>Twitter</span>
+              </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/dinerscode/" target="_blank">
+                <i class="fa fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="clearfix visible-xs-block"></div>
+    <div class="col-xs-6 col-sm-4 col-centered">
+      <div class="labicon">
+        <img class ="res_logo" id="columbia" src="/images/other_images/columbia.png" style="height:100px; width:200px">
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+
+
+

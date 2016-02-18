@@ -1,0 +1,189 @@
+{% extends "base2.html" %}
+
+{% block title %}
+
+Start
+
+{% endblock %}
+
+{% block body %}
+
+
+<center>
+  <div id ="logo">
+    <a href ="/"><img src = "/images/other_images/folder.jpg"></a>
+    <h6 id="dinerstitle"><a href="/"> DINERSCODE </a></h6>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class = "col-md-12" id="login_link" align="right">
+      <a href="/login">Login</a>
+    </div>
+  </div>
+</center>
+
+<div class="my-fluid-container" data-spy="scroll" align="center" >
+
+  <!-- Home TAB -->
+  <div id="Home3" class="container">
+
+    <div class="col-md-6"></div>
+    <div class="col-md-6" align="left" style="margin-top:20%">
+        <div>
+          <strong><h3 style="color:#92CCDC">Free Dining Perks for Frequent Diners!</h3></strong>
+
+          <p style="font-size:20px;">Access priority reservations, round of welcome drinks, and perks at best restaurants in Manhattan. Join the 1000+ frequent diners using DinersCode as a new way to dine.</p>
+        </div>
+
+        <form class="form-style validate-form clearfix" action="{{ url_for('index') }}" method="POST">
+          <div class="row">
+            <div class="col-md-9" >
+              <div class="form-group" >
+                {{ form.customers_email_address(placeholder="Email Address", class_="text-field2 form-control validate-field required", **{'data-validation-type':'email'}) }}
+              </div>
+              <div class="form-group form-general-error-container" style="margin-top:-15px"></div>
+            </div>
+            <div class="col-md-3 pull-right">
+              <div class="form-group" >
+                {{ form.signup_submit(class_="btn btn-lg btn-outline-inverse") }}
+                <img src="images/theme_images/loader-form.GIF" class="form-loader">
+              </div>
+            </div >
+          </div>
+        </form>
+    </div>
+  </div>
+
+    <!-- Service TAB -->
+  <div id="Service" class="container">
+    <div class ="col-sm-12">
+      <center>
+        <br><br><br>
+        <h2 style="color:#0A0500;font-family:arial;">OUR SERVICE IS 100% FREE</h2>
+      </center>
+
+      <center>
+        <h4 style="color:#505563; font-family:helvetica; font-weight:lighter"> The more you dine, the more perks you get <br> Discover new restaurants and make amazing savings</h4>
+        <br><br>
+      </center>
+
+    </div>
+  </div>
+
+  <!-- How it works TAB -->
+  <div id="HowItWorks" class="container">
+
+    <center>
+      <div class="col-sm-12 ">
+        <br><br>
+        <h3> How It Works </h3>
+      </div>
+    </center>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="select" ></div>
+        <strong><p id="howitworks1" style="color:#92CCDC;"; >STEP 1: SELECT</p></strong>
+        <p id ="howitworks1child">Select a perk from our list of eateries including restaurants, bars, and cafes</p>
+      </center>
+    </div>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="check" ></div>
+        <strong> <p id="howitworks2" style="color:#92CCDC" >STEP 2: REDEEM </p></strong>
+        <p id="howitworks2child">Find out how to redeem the selected perk</p>
+      </center>
+    </div>
+
+    <div class="col-sm-4 ">
+      <center>
+        <div id="cup"></div>
+            <strong><p id="howitworks3" style="color:#92CCDC">STEP 3:  ENJOY </p></strong>
+            <p id="howitworks3child">Confirm your DinersCode number at the eatery and enjoy your perk</p>
+            <br><br>
+      </center>
+    </div>
+  </div>
+
+  <!-- Questions TAB -->
+  <div id="QuestionTab" class="container">
+    <center> <h3> <br>QUESTIONS?<br><br> </h3> </center>
+
+    <div class="row">
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote1"><strong>What kind of places can I get perks at?</strong></p>
+        <p id ="quote1child">
+          We cover a wide range of popular eateries from casual sandwich joints to fine dining restaurants in Manhattan. They are all rated over 3.5 on yelp.</p>
+      </div>
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote3" ><strong>Does everyone see the same list of restaurants/cafes/bars?</strong></p>
+        <p id ="quote3child">
+          No. Depending on your dining frequency, preferences, and feedback from the eateries, we customize the list of eligible perks for you.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote2"><strong>Are there any hidden fees?</strong></p>
+        <p id ="quote2child">
+          No. We are offering this service to you completely free of charge. All you have to do is love eating out!</p>
+      </div>
+
+      <div class="col-sm-6 " style="padding:30px">
+        <p id="quote4"><strong>Would I always see the same perks?</strong></p>
+        <p id ="quote4child">
+          You will see both our regular and seasonal perks. Share your favorite places with us and we will work to add them to our list.</p>
+        <br><br>
+      </div>
+    </div>
+
+  </div>
+
+  <!--Contacts Tab-->
+  <div id="contact" class="container" style="background-color:#000000;">
+    <center>
+      <div id="logos">
+        <br>
+        <img class ="res_logo" id="columbia" src="/images/other_images/columbia.png" style="height:100px; width:200px">
+        <br>
+        <br>
+        <img class ="res_logo" src="/images/restaurant_logos/beautique.png" >
+        <img class ="res_logo" src="/images/restaurant_logos/bouley.png">
+        <img src="/images/restaurant_logos/bltsteak.png" class ="res_logo" id="bltsteak">
+        <img src="/images/restaurant_logos/brushstroke.png"class ="res_logo" >
+        <img src="/images/restaurant_logos/charliepalmer.png"class ="res_logo" >
+        <img src="/images/restaurant_logos/chefsclub.png"class ="res_logo" >
+        <img src="/images/restaurant_logos/marea.png" class ="res_logo" >
+        <!-- img src="/images/restaurant_logos/ilgattopardo.png"class ="res_logo" >-->
+        <br><br>
+        <img src="/images/restaurant_logos/la_sirene.png"class ="res_logo" id="hiddenlogos" >
+        <img src="/images/restaurant_logos/lupa.png" class ="res_logo" id="hiddenlogos" >
+        <img src="/images/restaurant_logos/pampano.png" class ="res_logo" id="hiddenlogos">
+        <!-- <img src="/images/restaurant_logos/piora.png" class ="res_logo" >-->
+        <img src="/images/restaurant_logos/rougeblanc.png" class ="res_logo" id="hiddenlogos">
+        <br><br>
+        <img src="/images/restaurant_logos/saikai.png" class ="res_logo" id="hiddenlogos">
+        <img src="/images/restaurant_logos/sotto.png" class ="res_logo" id="hiddenlogos"  >
+      </div>
+
+      <br> <br> <br>
+
+      <h6 >
+        <a href="/contact" >Contact us  </a>  -
+        <a href="/privacypolicy" target="_blank">Privacy  </a>
+        -
+        <a href="/faq" target="_blank">
+         FAQ
+        </a>
+      </h6>
+    </center>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,965 @@
+html {
+
+}
+
+
+#contactPage #content {
+    position:relative;
+    top:50px;
+}
+@media (min-width:768px) {
+    #contactPage{
+         min-height:700px !important;
+    }
+
+    #contactPage #content {
+         position:relative;
+         top:100px;
+         align:center;
+    }
+
+    #questions {
+         min-height:700px;
+    }
+
+    #loginbutton {
+        margin-top:-80px;
+    }
+	
+}
+@media (min-width:699px) and (max-width:768px) {
+	
+    #contactPage #content {
+    position:relative;
+    top:100px;
+   }
+
+    #questions{
+        min-height:1000px !important;
+    }
+    .zipcode{
+    	font-size:18px;
+    }
+
+    .cost {
+    	font-size:18px;
+    	color:black;
+    }
+
+    .cost_subtitle {
+    	font-size:15px;
+    	color:#333333;
+    	font-style:italic;
+    }
+	
+
+}
+
+
+
+.my-fluid-container {
+  overflow-x:hidden;
+  position: relative;
+  overflow-y: scroll; /* Remove for original scrolling */
+ -webkit-overflow-scrolling: touch;
+}
+
+/******************************* FOR BROWSER SIZES BIGGER THAN 700PX *************************/
+	
+	
+
+	.confirm {
+margin-top:150px; font-size:20px;
+	}
+
+	.confirm2 {
+		font-size:20px;
+	}
+
+	.confirm3{
+		font-size:20px;
+
+	}
+
+   .questionTitle {
+    	color:#0A0500;
+    }
+    	.age{
+		font-size:18px;
+		color:black;
+	}
+
+    .zipcode{
+    	font-size:18px;
+    	color:black;
+    }
+
+    .cost {
+    	font-size:18px;
+    	color:black;
+    }
+
+    .cost_subtitle {
+    	font-size:15px;
+    	color:#333333;
+    	font-style:italic;
+    }
+   #faq {
+   	 background-image:
+
+   url('../images/other_images/chefclub.jpg');
+
+   }
+
+	.res_logo {
+		height:49px;
+		width:auto;
+		text-align:center;
+
+	}
+
+#contact {
+	width:100%;
+}
+
+#logo {
+	height:1px;
+}
+#logo a img{
+	width:35px; left:-80px;position:relative;margin-top:-70px;
+
+}
+
+
+#dinerstitle {
+	position:relative;
+	margin-top:-55px;
+	font-family:helvetica;
+	font-size:20px;
+	left:10px;
+	color:white;
+}
+
+#dinerstitle a{
+	color:white;
+}
+
+#dinerstitle a:hover {
+	color:#ffd27f;
+}
+
+#login_link {
+	position:relative;
+	margin-top:-60px;
+	font-family:helvetica;
+	font-size:12px;
+	color:white;
+	text-decoration:underline;
+}
+
+#login_link a{
+	color:white;
+}
+
+#login_link a:hover {
+	color:#ffd27f;
+}
+
+#HowItWorks h3 {
+	font-family:arial;
+	font-size:30px;
+}
+
+#landing-bg{
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 100px;
+	z-index: -1;
+    background-image:
+	linear-gradient(
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('../images/other_images/land.jpg');
+    background-size:cover;
+
+}
+#Home {
+	left: 0;
+	bottom: 100px;
+	/*display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;*/
+	  display: table;
+
+}
+
+#Home .blocktex {
+	display: table-cell;
+  	text-align: center;
+  	vertical-align: middle;
+
+	/*width: 100%;*/
+/*	margin-top: 17%;
+*/	max-width: 700px;
+}
+
+#Home .blocktex .row {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#Home1 {
+
+	
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+   url('../images/other_images/fb1.jpg');
+
+    background-size:cover;
+    min-width:100%;
+	min-height: 630px;
+}
+
+#Home2 {
+
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+   url('../images/other_images/fb2.jpg');
+
+    background-size:cover;
+    min-width:100%;
+	min-height: 630px;
+}
+
+#Home3 {
+
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+   url('../images/other_images/fb3.jpg');
+
+    background-size:cover;
+    min-width:100%;
+	min-height: 630px;
+}
+
+
+	#contentz{
+		display:inline-block;
+	}
+
+	#confirm {
+		width:100%;
+		 background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.88),
+      rgba(0, 0, 0, 0.88)
+    ),
+   url('../images/other_images/confirm.jpg');
+   background-size:cover;
+		min-height: 500px;
+		margin-top:-30px;
+	}
+
+
+/************************* FOR BROWSER SIZES 320px AND SMALLER ********************************/
+
+@media (max-width: 320px) {
+
+    #questions {
+        min-width:100%;
+    }
+
+    #contact h6{
+        text-align:center;
+    }
+
+
+    #contactPage {
+        min-height:600px !important;
+    }
+    #contactPage .support {
+        left:100px !important;
+        font-size:14px;
+    }
+
+     #contactPage .media {
+        font-size:14px;
+    }
+
+    #contactPage .partnerships{
+        font-size:14px;
+    }
+
+   #loginbutton {
+
+     right:200px !important;
+    }
+	#columbia {
+		width:120px !important;
+		height:60px !important;
+		margin-top: 15px;
+		width:auto;
+		text-align:center;
+
+	}
+		.res_logo {
+		height:40px;
+		width:auto;
+     display:inline;
+     text-align:center;
+
+	}
+	#logos {
+
+		text-align:center;
+	}
+
+	#hiddenlogos{
+		display:none;
+	}
+
+    #confirm {
+        min-height:550px !important;
+    }
+	.confirm {
+		margin-top:100px !important;
+		font-size:15px;
+		margin-left:50px !important;
+		margin-right:20px;
+	}
+	.confirm2 {
+		font-size:15px;
+		margin-left:50px;
+		margin-right:20px;
+
+	}
+
+   .confirm3{
+		font-size:15px;
+		margin-left:50px;
+
+
+   }
+   .questionTitle {
+    	color:#0A0500;
+    }
+    	.age{
+		font-size:15px;
+		color:black;
+	}
+
+    .zipcode{
+    	font-size:15px;
+    	color:black;
+    }
+    .zipfield{
+    	top:600px;
+    }
+    .cost {
+    	font-size:15px;
+    	color:black;
+    }
+    .cost_subtitle{
+    	font-size:12px;
+    	color:#333333!important;
+    }
+
+    #dinerstitle {
+		margin-left:120px !important;
+	}
+
+    #logo a img{
+	margin-left:110px !important;
+	}
+
+
+	#logo{
+		margin-left:-120px;
+	}
+
+	#Home {
+		min-height:200px;
+	}
+
+	#Service h2 {
+		font-size:18px !important;
+		text-align:center;
+	}
+	#Service h4{
+	font-size:13px !important;
+	text-align:center;
+
+    }
+    #HowItWorks h3 {
+	font-family:arial;
+	font-size:30px;
+	text-align:center;
+
+	}
+	#howitworks1child{
+
+		font-size:15px;
+	}
+
+	#howitworks2child{
+
+		font-size:15px;
+
+	}
+
+	#howitworks3child{
+		font-size:15px;
+
+	}
+
+	#QuestionTab {
+		min-height:600px;
+
+	}
+	#QuestionTab h3 {
+
+		font-size:25px !important;
+	}
+
+    #questions h6 {
+        font-size:18px;
+    }
+  
+}
+
+/********************* FOR BROWSER SIZES BIGGER THAN 320px BUT SMALLER THAN 700px **************************/
+
+@media (min-width: 320px) and (max-width:700px) {
+    
+
+        #contact h6{
+        text-align:center;
+    }
+
+    
+
+    #contactPage .support {
+        margin-top:80px;
+        left:100px !important;
+        margin-left:40px;
+        font-size:14px;
+    }
+
+     #contactPage .media {
+        margin-left:40px;
+        font-size:14px;
+    }
+
+    #contactPage .partnerships{
+        margin-left:40px;
+        font-size:14px;
+    }
+
+
+
+    #content {
+        margin-top:50px;
+    }
+    .submitquestion {
+        margin-left:20px;
+    }
+    #loginbutton {
+        margin-top:-80px;
+    }
+
+
+    .zipcode{
+    	font-size:18px;color:black;position:absolute;
+    }
+    .cost {
+    	font-size:18px;color:black;position:relative;
+    }
+
+    .cost_subtitle {
+    	font-size:15px;
+    	color:#333333;
+    	font-style:italic;
+    }
+	#faqs {
+		margin-top:-50px !important;
+	}
+
+	#bltsteak{
+
+	clear:left;
+	white-space:pre;
+	}
+
+
+		#hiddenlogos{
+		display:none;
+	}
+
+	#confirm {
+		min-height:500px;
+	}
+
+		.confirm {
+margin-top:100px; font-size:15px;
+margin-left:30px;
+
+	}
+
+	.confirm2 {
+		font-size:15px;
+		margin:20px;
+		margin-left:50px;
+	}
+
+	.confirm3{
+		font-size:15px;
+		margin-top:-30px;
+		margin-left:20px;
+
+	}
+
+
+	.age{
+		font-size:15px;
+		color:black;
+	}
+
+ .cost {
+    	font-size:15px;
+    	color:black;
+    }
+
+      .cost_subtitle {
+    	font-size:15px;
+    	font-style:italic;
+    }
+
+    .questionTitle {
+    	color:#0A0500;
+    	font-size:18px;
+    	left:20px;
+    	margin:30px;
+    }
+      .zipcode{
+    	font-size:15px;
+    	color:black;
+    }
+	#dinerstitle {
+        max-width: 50%;
+        left:20px;
+  }
+
+  #logo a img {
+  	left:-65px;
+  }
+
+	#howitworks1child{
+
+		font-size:18px;
+	}
+
+
+	#howitworks2child{
+		padding-right:20px;
+		font-size:18px;
+	}
+
+	#howitworks3child{
+		padding-right:20px;
+		font-size:18px;
+	}
+
+	#Home {
+		width:100%;
+		min-height: 560px;
+	}
+
+	#Home .title h3{
+		font-size:25px;
+		top:30px;
+		left:90px;
+
+	}
+	#Home .title h1{
+
+	color:#92CCDC;
+	font-size:15px;
+	position:relative;
+	margin-top:100px;
+	left:50px;
+	}
+	#Home .para1 {
+
+	font-size:18px;
+	 margin-left:-20px;
+	}
+    #Home .para2{
+    	font-size:18px;
+    	margin-left:-110px;
+    }
+	#Home .textfield {
+		margin-left:-300px;
+		margin-top:5px;
+		max-height:100px;
+		min-width:300px;
+	}
+
+	#Home .button{
+		display:block;
+		margin-left:-290px;
+
+
+	}
+		#contentz{
+		display:inline-block;
+	}
+}
+
+#questions{
+	width:100%;
+	background-color:#E8E5D6;
+	min-height:500px;
+}
+
+
+.section {
+	background-attachment: scroll;
+	background-position: right center;
+}
+
+
+
+#select{
+	width: 70px;
+	height: 70px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	background: url(../images/other_images/select.jpg) no-repeat;
+	margin-top:110px;
+
+}
+
+#check{
+		width: 70px;
+	height: 70px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	background: url(../images/other_images/check.jpg) no-repeat;
+	margin-top:110px;
+
+}
+
+#cup {
+	width: 70px;
+	height: 70px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	background: url(../images/other_images/cup.jpg) no-repeat;
+	margin-top:110px;
+
+}
+
+#Service {
+ /*background-image:
+    linear-gradient(
+    	to top right,
+
+      #F4DFB6,  #e0e0d1
+    );*/
+    background-color: #fff8f0;
+	min-height:500px;
+	min-width:100%;
+}
+
+#Service h2 {
+color:black;
+  position:relative;
+  font-size:30px;
+}
+
+#Service h4{
+	color:black;
+  	position:relative;
+  	font-size:20px;
+  	font-family:Helvetica;
+}
+
+@media (min-width: 700px)  and (max-width:800px) {
+
+    #confirm {
+        margin-top:-50px;
+        min-height:700px;
+        background-size:center;
+    }
+	#zipcode{
+		margin-top:-500px !important;
+	}
+
+        #contact h6{
+        text-align:center;
+    }
+
+
+}
+
+@media (min-width: 320px) and (max-width:700px) {
+	#Service h2 {
+		font-size:22px;
+	}
+	#Service h4{
+	font-size:16px;
+    }
+
+    #QuestionTab{
+    	min-height:700px;
+    }
+    
+}
+
+
+#Questions {
+	background-color: #E8E5D6;
+	min-height:800px;
+}
+
+#QuestionTab h3 {
+	position:relative;
+	color:black;
+	top:20px;
+	font-family:Helvetica;
+	font-size:30px;
+}
+
+
+
+#QuestionTab {
+
+	 /*background-image:
+    linear-gradient(
+    	to top right,
+        #F4DFB6 , #F5EBCF,#e0e0d1
+    );*/
+		background-color: #fff8f0;
+		min-height:650px;
+		min-width:100%;
+
+}
+
+	#quote1 {
+		color:black;
+
+	}
+
+	#quote2 {
+		color:black;
+
+
+	}
+	#quote3 {
+		color:black;
+
+
+	}
+	#quote4 {
+		color:black;
+	}
+
+
+#quote1child {
+	color:#595959;
+}
+
+#quote2child {
+	color:#595959;
+}
+#quote3child {
+
+	color:#595959;
+}
+
+#quote4child {
+
+	color:#595959;
+}
+
+
+
+
+#faq1{
+	height:250px;
+
+}
+
+#faq2 {
+	height:400px;
+
+
+}
+#HowItWorks {
+
+   width:100%;
+	min-height: 600px;
+	  background-image:
+       linear-gradient(
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+   url('../images/other_images/restaurant_pic.jpg');
+   background-size: cover;
+	position: relative;
+	overflow: hidden;
+
+
+}
+
+
+
+	#Experience h4 {
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+
+	#Experience .float-right {
+		float: right;
+	}
+
+	#Experience ul {
+		margin-bottom: 40px;
+	}
+
+
+
+#contact h6{
+	margin-top:-30px;
+	font-size:13px;
+	font-weight:lighter !important;
+	font-family:Helvetica;
+	text-align:Center;
+}
+#contact h6 a:hover{
+	color:#ffd27f;
+}
+#content {
+	margin-top:50px;
+}
+
+#content p {
+	color:black;
+
+}
+#contactPage{
+	width:100%;
+background-color:#E8E5D6;
+	margin-top:-60px;
+	min-height: 500px;
+	margin-top:-100px;
+}
+
+/*Modified by Charles*/
+@media (max-width:1000px) and (min-width: 670px){
+	#Service {
+	     background-image:
+	    	    -webkit-linear-gradient(bottom left, #F4DFB6, #e0e0d1);
+	     background-image:
+	    	    -o-linear-gradient(bottom left, #F4DFB6, #e0e0d1);
+	     background-image:
+	    	    linear-gradient(to top right, #F4DFB6, #e0e0d1);	    	    	
+	    	    	min-height:600px;
+	    	    	min-width:100%;
+    }
+}
+@media (max-width:670px){
+	#Service {
+	     background-image:
+	    	    -webkit-linear-gradient(bottom left, #F4DFB6, #e0e0d1);
+	     background-image:
+	    	    -o-linear-gradient(bottom left, #F4DFB6, #e0e0d1);
+	     background-image:
+	    	    linear-gradient(to top right, #F4DFB6, #e0e0d1);	    	    	
+	    	    	min-height:950px;
+	    	    	min-width:100%;
+    }
+
+}
+/*Modified by Charles*/
+
+#ServiceBox {
+	position: relative;
+	top: 35px;
+}
+
+#avatarRow{
+	position: relative;
+	/*right: -50px;*/
+}
+#avatarBox{
+  
+  width: 130px;
+  height: 130px;
+  margin: 10px;
+   
+  -webkit-border-radius: 55%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+#avatarBox img{
+	
+	position: relative;
+    bottom: 1px;
+    left: -15px;
+	margin: 5px;
+	width: 120px;
+  	height: 120px;
+   -webkit-border-radius: 55%; 
+   -moz-border-radius: 50%;
+   border-radius: 50%;
+
+   /*-moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+	-webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+	box-shadow: 1px 2px 3px rgba(0,0,0,.5);*/
+}
+#ourstory h3{
+	color: black;
+	font-family: arial;
+}
+#ourstory{
+	width:100%;
+	background-image: url("/img/index_images/artichoke2.jpg");
+	background-repeat: initial;
+	/*background-size:cover;*/
+	/*background-color:#f9f9f2;*/
+}
+
+#ourstory p{
+	color: black;
+	text-align: left;
+}
+#contactinfo {
+	min-height: 200px;
+	margin-top: 70px;
+}
+
+#contactinfo a {
+    font-weight: normal;
+
+}
+
+/*Modified by Charles*/

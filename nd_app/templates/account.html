@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+DinersCode | Account
+
+{% endblock %}
+
+{% block body %}
+
+
+        <article id="contact" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic18.png" >
+          <div class="content-wrapper clearfix">
+            <h1 class="section-title pull-left" style="font-size:30px;">Account</h1>
+
+            <form class="form-style validate-form clearfix" action="{{ url_for('account') }}" method="POST" role="form">
+
+              {{ form.hidden_tag()}}
+
+              <div class="col-md-offset-1 col-md-10">
+                <div class="form-group form-general-error-container"></div>
+                <div class="form-group">
+                  {{ form.name(placeholder="Full Name", value=user.customers_firstname, class_="text-field1 form-control validate-field required", **{'data-validation-type':'string'}) }}
+                </div>  
+                <div class="form-group">
+                  {{ form.email(placeholder="Email Address", value=user.customers_email_address, class_="text-field1 form-control validate-field required", **{'data-validation-type':'email'}) }}
+                </div>
+                <div class="form-group">
+                    {% if user.customers_telephone == '(null)' %}
+                      {{ form.telephone(placeholder="Telephone(Optional)", class_="text-field1 form-control validate-field", **{'data-validation-type':'phone'}) }}
+                    {% elif user.customers_telephone == '' %}
+                      {{ form.telephone(placeholder="Telephone(Optional)", class_="text-field1 form-control validate-field", **{'data-validation-type':'phone'}) }}
+                    {% else %}
+                      {{ form.telephone(placeholder="Telephone(Optional)", value=user.customers_telephone, class_="text-field1 form-control validate-field", **{'data-validation-type':'phone'}) }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                  {{ form.pass_old(placeholder="Password", class_="text-field1 form-control validate-field required", **{'data-validation-type':'password'}) }}
+                </div>
+                <div class="form-group">
+                  {{ form.pass_raw(placeholder="Change Password", class_="text-field1 form-control validate-field", **{'data-validation-type':'password'}) }}
+                </div> 
+                <div class="form-group">
+                  {{ form.confirm(placeholder="Confirm Password", class_="text-field1 form-control validate-field", **{'data-validation-type':'cfm_password'}) }}
+                </div>
+                <div class="form-group" align="center">
+                  <img src="images/theme_images/loader-form.GIF" class="form-loader">   
+                  {{ form.update(class_="btn btn-sm btn-outline-inverse2") }}
+
+                </div>
+              </div>
+
+            </form>
+
+            <div class="content-to-populate-in-modal" id="account_updated">
+              <h5><span class="icon fa fa-cutlery"></span>  Account information has been updated.</h5>
+            </div><!-- #modal-content-1 -->
+
+          </div>
+        </article><!-- .section-wrapper -->
+
+{% endblock %}
+

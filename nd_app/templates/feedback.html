@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+DinersCode | Feedback
+
+{% endblock %}
+
+{% block body %}
+
+        <article id="contact" class="section-wrapper clearfix" data-custom-background-img="/images/other_images/pic3.png">
+          <div class="content-wrapper clearfix">
+            <h1 class="section-title" style="font-size:30px;" align="left">Feedback</h1>
+            <!-- <p class ="feedback-msg"style="padding-bottom:25px;">Feel free to give us any feedback, comment, or ask any questions. </p>-->
+            <div id="change_content">
+
+             
+              <!-- CONTACT FORM -->
+              <div class=" col-md-18">
+                <center>
+                  <form class="form-style validate-form clearfix" action="{{ url_for('feedback') }}" method='POST'>
+                    <!-- form left col -->
+                    
+                    <div class="col-md-6">
+
+                      <div class="form-group" >
+                        {{ form.name(placeholder="Full Name", value=user.customers_firstname, class_="text-field1 form-control validate-field required", **{'data-validation-type':'string'}) }}
+                      </div>  
+                      <div class="form-group" >
+                        {{ form.email(placeholder="Email Address", value=user.customers_email_address, class_="text-field1 form-control validate-field required", **{'data-validation-type':'email'}) }}
+                      </div>
+                      <div class="form-group" > 
+                        {{ form.subject(placeholder="Subject", class_="text-field1 form-control validate-field required") }}
+                      </div>                                      
+                    </div><!-- end: form left col -->
+
+                    <!-- form right col -->
+                    <div class="col-md-6" >
+                      <div class="form-group" >
+                        {{ form.feedback(placeholder="Message...", class_="text-area form-control validate-field required") }}
+                      </div>
+                      <div class="form-group pull-right" >
+                        
+                        {{ form.submit(class_="btn btn-sm btn-outline-inverse2") }}
+                        <img src="images/theme_images/loader-form.GIF" class="form-loader" >
+                
+                      </div> 
+                      <div class="form-group form-general-error-container"></div>           
+                    </div><!-- end: form right col -->
+                   
+                  </form>
+                </center>
+              </div><!-- end: CONTACT FORM -->
+             
+            </div><!-- end: change-content -->
+          </div>
+        </article><!-- .section-wrapper -->
+
+{% endblock %}
