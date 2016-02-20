@@ -506,7 +506,7 @@ def home():
 	#if 'offset' not in session:
 	#	session['offset'] = 0
 
-	print "Everytime we render", session['offset']
+	#print "Everytime we render", session['offset']
 
 		
 	customer = Customers.query.filter_by(customers_email_address = session['customers_email_address']).first()

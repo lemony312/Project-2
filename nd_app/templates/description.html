@@ -19,6 +19,18 @@ Description
               </p>
 
               <h6 style="color:#FF9933" align="left"> {{rstrnt.perk}} </h6>
+              <form class="form-style validate-form clearfix" action="{{ url_for('description') }}" method="POST">
+                  <div class="form-group form-general-error-container"></div>
+                  <div align="left" class="form-group">
+                    {{ form.submit(class_="btn btn-lg btn-outline-inverse") }} 
+                    <img src="/images/theme_images/loader-form.GIF" class="form-loader">
+                  </div>
+                </form>
+              </div>
+
+
+
+
 
               <div class="row">
                               
@@ -137,7 +149,7 @@ Description
                   {% endfor %}
                 {% endif %}
 
-                <form class="form-style validate-form clearfix" action="{{ url_for('description') }}" method="POST">
+                <!-- <form class="form-style validate-form clearfix" action="{{ url_for('description') }}" method="POST">
                   <div class="form-group form-general-error-container"></div>
                   <div class="form-group">
                     {{ form.submit(class_="btn btn-lg btn-outline-inverse") }} 
@@ -145,7 +157,7 @@ Description
                   </div>
                 </form>
               </div>
-
+ -->
               <div class="content-to-populate-in-modal" id="categories">
                 <div align="left">
                   {% for rstcateg in rstcategs %}

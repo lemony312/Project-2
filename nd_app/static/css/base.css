@@ -189,11 +189,7 @@ margin-top:150px; font-size:20px;
 #Home {
 	left: 0;
 	bottom: 100px;
-	/*display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: center;*/
-	  display: table;
+	display: table;
 
 }
 
@@ -210,6 +206,10 @@ margin-top:150px; font-size:20px;
 #Home .blocktex .row {
 	max-width: 600px;
 	margin: 0 auto;
+}
+
+#bottom-text {
+	max-width: 300px;
 }
 
 #Home1 {

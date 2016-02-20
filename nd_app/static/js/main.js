@@ -5,7 +5,6 @@ $(document).ready(function ($) {
 
 	// initial Home section resize
 	homeResize();
-	nextBackground();
 
 	// Smooth scrolling to anchors
   	var $root = $('.my-fluid-container'); //change to html, body for original scrolling
@@ -23,27 +22,6 @@ $(document).ready(function ($) {
 	});
   	$('#navbar').scrollspy();
  
-
-
-	var header = $('landing-bg');
-
-	var backgrounds = new Array(
-	    'url(../images/other_images/land.jpg)'
-	  , 'url(../images/other_images/blue.jpg)'
-	   , 'url(http://placekitten.com/300)'
-	   , 'url(http://placekitten.com/400)'
-	);
-
-	var current = 0;
-
-	function nextBackground() {
-	    current++;
-	    current = current % backgrounds.length;
-	    header.css('background-image', backgrounds[current]);
-	}
-	setInterval(nextBackground, 1000);
-
-	header.css('background-image', backgrounds[0]);
     // window.onorientationchange = function(){
     // 	homeResize();
     // }
