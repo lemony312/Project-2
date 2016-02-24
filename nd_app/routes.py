@@ -520,7 +520,6 @@ def home():
 			session['search_key'] = form.search_key.data
 		if request.args.get('see_more', None):
 			session['offset'] = session['offset'] + DATA_MAX
-			print "Everytime we hit see_more", session['offset']
 			session['see_more'] = True
 	else: 
 		session['offset'] = 0
