@@ -700,8 +700,8 @@ color:black;
 #Service h4{
 	color:black;
   	position:relative;
-  	font-size:20px;
-  	font-family:Helvetica;
+  	font-size:15px;
+  	/*font-family:Helvetica;*/
 }
 
 @media (min-width: 700px)  and (max-width:800px) {
