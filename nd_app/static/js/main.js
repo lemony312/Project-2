@@ -20,7 +20,40 @@ $(document).ready(function ($) {
 
 	    return false;
 	});
-  	$('#navbar').scrollspy();
+  	// $('#navbar').scrollspy();
+
+
+
+
+
+	 var imgArr = new Array( // relative paths of images
+	 '../images/other_images/land.jpg',
+	 '../images/other_images/landing_1.jpg',
+	 '../images/other_images/unnamed-1.png'
+	 );
+	 
+	 var preloadArr = new Array();
+	 var i;
+	 
+	 /* preload images */
+	 for(i=0; i < imgArr.length; i++){
+	 	preloadArr[i] = new Image();
+	 	preloadArr[i].src = imgArr[i];
+	 }
+	 
+	 var currImg = 1;
+	 var intID = setInterval(changeImg, 6000);
+	 
+	 /* image rotator */
+	 function changeImg(){
+	 $('#landing-bg').animate({opacity: 0}, 1000, function(){
+	 $(this).css('background','url(' + preloadArr[currImg++%preloadArr.length].src +')');
+	 }).animate({opacity: 1}, 1000);
+	 }
+
+
+
+
  
     // window.onorientationchange = function(){
     // 	homeResize();

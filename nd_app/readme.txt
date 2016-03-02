@@ -6,3 +6,4 @@ $ pip install Flask-SQLAlchemy
 $ pip install Flask-WTF
 $ pip install Flask-Mail
 $ pip install mysql-python
+$ pip install pytz
