@@ -3,32 +3,10 @@ var projectsAnimated = false;
 
 $(document).ready(function ($) {
 
-	// initial Home section resize
-	homeResize();
-
-	// Smooth scrolling to anchors
-  	var $root = $('.my-fluid-container'); //change to html, body for original scrolling
-	$('#navbar a, a.animate').click(function() {
-	    var href = $.attr(this, 'href');
-	    $root.animate({
-	        scrollTop: $root.scrollTop() + $(href).position().top //- navbarHeight
-	    }, 500, function () {
-	        window.location.hash = href;
-
-	    });
-
-
-	    return false;
-	});
-  	// $('#navbar').scrollspy();
-
-
-
-
-
+	//rotating background image
 	 var imgArr = new Array( // relative paths of images
 	 '../images/other_images/land.jpg',
-	 '../images/other_images/landing_1.jpg',
+	 '../images/other_images/fb1.jpg',
 	 '../images/other_images/unnamed-1.png'
 	 );
 	 
@@ -47,11 +25,28 @@ $(document).ready(function ($) {
 	 /* image rotator */
 	 function changeImg(){
 	 $('#landing-bg').animate({opacity: 0}, 1000, function(){
-	 $(this).css('background','url(' + preloadArr[currImg++%preloadArr.length].src +')');
+	  $(this).css({'background-image': 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.5)), url('+preloadArr[currImg++%preloadArr.length].src+')','background-size':'cover'});
 	 }).animate({opacity: 1}, 1000);
 	 }
 
+	// initial Home section resize
+	homeResize();
 
+	// Smooth scrolling to anchors
+  	var $root = $('.my-fluid-container'); //change to html, body for original scrolling
+	$('#navbar a, a.animate').click(function() {
+	    var href = $.attr(this, 'href');
+	    $root.animate({
+	        scrollTop: $root.scrollTop() + $(href).position().top //- navbarHeight
+	    }, 500, function () {
+	        window.location.hash = href;
+
+	    });
+
+
+	    return false;
+	});
+  	// $('#navbar').scrollspy();
 
 
  

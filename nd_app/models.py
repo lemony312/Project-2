@@ -239,6 +239,48 @@ class RatingInfo(db.Model):
 		self.overall = overall
 		self.datetime = datetime
 
+class Favorites(db.Model):
+	__tablename__ = 'favorites'
+	customers_id = db.Column(db.Integer, primary_key = True)
+	fav2 = db.Column(db.Integer)
+	fav3 = db.Column(db.Integer)
+	fav4 = db.Column(db.Integer)
+	fav5 = db.Column(db.Integer)
+	fav6 = db.Column(db.Integer)
+	fav7 = db.Column(db.Integer)
+	fav8 = db.Column(db.Integer)
+	fav9 = db.Column(db.Integer)
+	fav10 = db.Column(db.Integer)
+	fav11 = db.Column(db.Integer)
+	fav12 = db.Column(db.Integer)
+	fav13 = db.Column(db.Integer)
+	fav14 = db.Column(db.Integer)
+	fav15 = db.Column(db.Integer)
+	fav16 = db.Column(db.Integer)
+	fav17 = db.Column(db.Integer)
+	fav18 = db.Column(db.Integer)
+	fav19 = db.Column(db.Integer)
+
+	def __init__(self, customer_id, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9 ,fav10 ,fav11, fav12, fav13, fav14, fav15, fav16, fav17, fav18, fav19):
+		self.fav2 = fav2
+		self.fav3 = fav3
+		self.fav4 = fav4
+		self.fav5 = fav5
+		self.fav6 = fav6
+		self.fav7 = fav7
+		self.fav8 = fav8
+		self.fav9 = fav9
+		self.fav10 = fav10
+		self.fav11 = fav11
+		self.fav12 = fav12
+		self.fav13 = fav13
+		self.fav14 = fav14
+		self.fav15 = fav15
+		self.fav16 = fav16
+		self.fav17 = fav17
+		self.fav18 = fav18
+		self.fav19 = fav19
+
 # class SessionRestaurnInfo(db.Model):
 # 	__tablename__ = 'session_rest_info'
 # 	id = db.Column(db.Integer, primary_key = True)
