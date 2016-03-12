@@ -6,8 +6,8 @@ $(document).ready(function ($) {
 	//rotating background image
 	 var imgArr = new Array( // relative paths of images
 	 '../images/other_images/land.jpg',
-	 '../images/other_images/fb1.jpg',
-	 '../images/other_images/unnamed-1.png'
+	 '../images/other_images/image2.jpg',
+	 '../images/other_images/image3.jpg'
 	 );
 	 
 	 var preloadArr = new Array();
