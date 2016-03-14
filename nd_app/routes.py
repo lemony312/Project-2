@@ -4,13 +4,13 @@ from datetime import datetime, timedelta
 from flask.ext.mail import Message, Mail
 from nd_app.models import db, Customers, CustomersInfo, Restaurants, RstrntGall, RstrntCateg, ZipcodeIncome, RedeemInfo, RatingInfo
 from nd_app.forms import SigninForm, ForgetPwdForm, ResetPwdForm, QuestionForm, RedeemForm, SearchForm, EmailForm, AccountForm, FeedbackForm, RegistrationForm, CustomerSearchForm, RestaurantAccountForm, RestaurantSigninForm, RestaurantForgetPwdForm
-from nd_app.searchfunc import show_restaurants, filter_restaurants ,show_p_restaurants
+from nd_app.searchfunc import show_restaurants
 from operator import attrgetter
 import string
 import random
 import time
 import pytz
-
+from flask.ext.paginate import Pagination
 try:
     import urllib3.contrib.pyopenssl
     urllib3.contrib.pyopenssl.inject_into_urllib3()
@@ -495,8 +495,29 @@ def generateList(customer_score):
 		rstrnt.append(rstrntgall)
 		session['restaurants'].append(rstrnt)	
 
+
+def get_css_framework():
+    return current_app.config.get('CSS_FRAMEWORK', 'bootstrap3')
+
+
+def get_link_size():
+    return current_app.config.get('LINK_SIZE', 'sm')
+
+
+def show_single_page_or_not():
+    return current_app.config.get('SHOW_SINGLE_PAGE', False)
+
+def get_pagination(**kwargs):
+    kwargs.setdefault('record_name', 'records')
+    return Pagination(css_framework=get_css_framework(),
+                      link_size=get_link_size(),
+                      show_single_page=show_single_page_or_not(),
+                      **kwargs
+                      )
+
 ###### Diner Account Page ######
-@app.route("/home", methods=['GET', 'POST'])
+@app.route("/home/", defaults={'page: 1'}, methods=['GET', 'POST'])
+@app.route("/home/<int:page>/", methods=["GET", "POST"])
 def home():
 	form = SearchForm()
 	is_ios = True if request.args.get('ios', None) else False  # for ios app
@@ -518,54 +539,38 @@ def home():
 			session['area'] = form.place.data
 			session['rank'] = form.rank.data
 			session['search_key'] = form.search_key.data
-		if request.args.get('see_more', None):
-			session['offset'] = session['offset'] + DATA_MAX
-			session['see_more'] = True
-	else: 
-		session['offset'] = 0
-		session['see_more'] = False
-		print "when we restart this page", session['offset']
+		if request.args.get('page', 1):
+			session['page'] = int(request.args.get('page', 1))
 
 	search_key = session['search_key'] if 'search_key' in session else ''
 
-	if 'see_more' in session and session['see_more']:
-		seed_number = session['rest_seed_number'] if 'rest_seed_number' in session else 1
-		print "second time and number of offset", session['offset']
-		if 'area' not in session:
-			#restaurant = show_p_restaurants(session['restaurants'],offset = session['offset'], limit = session['offset']+DATA_MAX)
-			restaurants = show_restaurants(customer.score, seed_number,offset = session['offset'], limit = session['offset']+DATA_MAX)
-			session['prev_area'] = 'ALL'
-			session['prev_rank'] = 'All'
-
-		else:
-			area = session['area']
-			rank = session['rank']
-			#restaurants = show_p_restaurants(session['restaurants'], offset = session['offset'], limit = session['offset']+DATA_MAX, area=area, rank=rank, search_key=search_key)
-			restaurants = show_restaurants(customer.score, seed_number, offset = session['offset'], limit = session['offset']+DATA_MAX, area=area, rank=rank, search_key=search_key)
-
-		
-		if len (restaurants)<DATA_MAX:
-			need_seemore_tab = False
-			session['see_more'] = False
-		print len(restaurants)
+	if session['page']>1:
+		restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX,page=session['page'])
+		pagination = get_pagination(page=session['page'],
+                                per_page=per_page,
+                                total=total,
+                                record_name='restaurants',
+                                )
 	else: #traverse list first time
 	 	seed_number = random.randrange(100)
 	 	session['rest_seed_number'] = seed_number
-	 	print seed_number, "first time"
 	 	if 'area' not in session:
-	 		#restaurants = show_p_restaurants(customer.score, seed_number, limit=DATA_MAX)
-	 		restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX)
+	 		restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX,page=session['page'])
 	 		session['prev_area'] = 'ALL'
 	 		session['prev_rank'] = 'All'
 
 	 	else:
 			area = session['area']
 	 		rank = session['rank']
-
-	 		#restaurants = show_p_restaurants(customer.score, seed_number, limit=DATA_MAX, area=area, rank=rank, search_key=search_key)
-			restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX, area=area, rank=rank, search_key=search_key)
+			restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX, area=area, rank=rank, page=session['page'],search_key=search_key)
 			session['prev_area'] = area
 	 		session['prev_rank'] = rank
+	 		
+		pagination = get_pagination(page=session['page'],
+                    per_page=per_page,
+                    total=total,
+                    record_name='restaurants',
+                    )	
 
 	rstrnts = []
 	for restaurant in restaurants:
@@ -621,18 +626,11 @@ def home():
 		form.rank.choices.remove((session['prev_rank'], session['prev_rank'].title()))
 		form.rank.choices.insert(0, (session['prev_rank'], session['prev_rank'].title()))
 
-	if is_ios:
-		rstrnts = [dict(r.serialize, **r.gallery.serialize) for r in restaurants]
-		customer = customer.serialize
-		if len(rstrnts) == 0:
-			return jsonify(form=form.data, rstrnts=rstrnts, show="show_popup", success=False, user=customer, many_restaurants=need_seemore_tab)
-		else:
-			return jsonify(form=form.data, rstrnts=rstrnts, success=True, user=customer, many_restaurants=need_seemore_tab)
 
 	if len(rstrnts) == 0:
-		return render_template("home.html", form=form, rstrnts=rstrnts, show="show_popup", success=False, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
+		return render_template("home.html", form=form, rstrnts=rstrnts,pagination=pagination, show="show_popup", success=False, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
 	else:
-		return render_template("home.html", form=form, rstrnts=rstrnts, success=True, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
+		return render_template("home.html", form=form, rstrnts=rstrnts,pagination=pagination, page=session['page'], success=True, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
 
 
 @app.route('/description/<rstrnt_id>', methods=['GET', 'POST'])

@@ -262,6 +262,7 @@ class Favorites(db.Model):
 	fav19 = db.Column(db.Integer)
 
 	def __init__(self, customer_id, fav2, fav3, fav4, fav5, fav6, fav7, fav8, fav9 ,fav10 ,fav11, fav12, fav13, fav14, fav15, fav16, fav17, fav18, fav19):
+		self.customer_id = customer_id
 		self.fav2 = fav2
 		self.fav3 = fav3
 		self.fav4 = fav4

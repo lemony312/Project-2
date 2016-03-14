@@ -319,11 +319,11 @@ margin-top:150px; font-size:20px;
 		text-align:center;
 
 	}
-		.res_logo {
+	.res_logo {
 		height:40px;
 		width:auto;
-     display:inline;
-     text-align:center;
+     	display:inline;
+     	text-align:center;
 
 	}
 	#logos {
@@ -540,7 +540,7 @@ margin-top:150px; font-size:20px;
 		color:black;
 	}
 
- .cost {
+ 	.cost {
     	font-size:15px;
     	color:black;
     }
@@ -563,7 +563,7 @@ margin-top:150px; font-size:20px;
 	#dinerstitle {
         max-width: 50%;
         left:20px;
-  }
+  	}
 
   #logo a img {
   	left:-65px;
@@ -587,7 +587,7 @@ margin-top:150px; font-size:20px;
 
 	#Home {
 		width:100%;
-		min-height: 560px;
+		min-height: 500px;
 	}
 
 	#Home .title h3{
@@ -883,11 +883,11 @@ background-color:#E8E5D6;
 	    	    -o-linear-gradient(bottom left, #f8f8ff, #e0e0d1);
 	     background-image:
 	    	    linear-gradient(to top right, #f8f8ff, #e0e0d1);	    	    	
-	    	    	min-height:600px;
+	    	    	min-height:400px;
 	    	    	min-width:100%;
     }
 }
-@media (max-width:670px){
+@media (max-width:580px){
 	#Service {
 	     background-image:
 	    	    -webkit-linear-gradient(bottom left, #f8f8ff, #e0e0d1);
@@ -895,7 +895,7 @@ background-color:#E8E5D6;
 	    	    -o-linear-gradient(bottom left, #f8f8ff, #e0e0d1);
 	     background-image:
 	    	    linear-gradient(to top right, #f8f8ff, #e0e0d1);	    	    	
-	    	    	min-height:950px;
+	    	    	min-height:650px;
 	    	    	min-width:100%;
     }
 

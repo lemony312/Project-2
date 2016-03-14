@@ -1,13 +1,5 @@
 {% extends "base.html" %}
-	<head>
-		<link rel="stylesheet" type="text/css" href="transparent_dropdown.css">
-		<style>
-		#my_form
-		{		
-			background-color: transparent;
-		}
-		</style>
-	</head>
+
 {% block title %}
 
 DinersCode | Your Perks
@@ -23,8 +15,7 @@ DinersCode | Your Perks
 
 		          	<center>
 
-		                <!-- <form class="form-style validate-form clearfix" action="{{ url_for('home') }}" method="POST" role="form"> -->
-		                <form class="form-style clearfix" id="my_form" action="{{ url_for('home') + '?search=true' }}" method="POST" role="form">
+		                <form class="form-style validate-form clearfix" action="{{ url_for('search') }}" method="POST" role="form">
 
 				            	<div class="col-md-6" align="center">
 				            		<div class="form-group">
@@ -61,34 +52,56 @@ DinersCode | Your Perks
 		             	</form>
 
 		             	{% if success %}
-						<section class="feature-columns row clearfix">
-						<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-		                    {% for rstrnt in rstrnts %}
+		                <section class="feature-columns row clearfix">
 
-		                      <article class="feature-col col-md-4 rst-listing">
-		                        <a href="{{ url_for('description',rstrnt_id=rstrnt[0].id) }}" class="thumbnail linked" style="max-width:600px;">
 
-		                          <div class="image-container" style="width:100%; height:180px; text-align:center;">
+							<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+							
+							<script>
+							start = 0; 
+							showRestaurants(0);	
+							function showRestaurants (start) {
+								$.getJSON("/home?offset=" + start).then(function(data) {
+									var restaurants = data.restaurants;
 
-		                            <img data-img-src="http://admin.neurodining.com/images/gallery/{{rstrnt[1].uploaded_file}}" class="lazy item-thumbnail" style="width:300px; height:180px; text-align:center; " onerror="this.src='/images/gallery/default.jpg'">
+									for(var i=0; i<restaurants.length; i++) {
+										var restaurant = restaurants[i];
+										$(".feature-columns").append(
+											"<article class='feature-col col-md-4 rst-listing'>" +
+												"<a href='/description/" + restaurant.url + "' class='thumbnail linked' style='max-width:600px;'>" + 
+													"<div class='image-container' style='width:100%; height:180px; text-align:center;'>" + 
+														"<img data-img-src='http://admin.neurodining.com/images/gallery/" + restaurant.img + "' class='lazy item-thumbnail' style='width:300px; height:180px; text-align:center;'>" +  
+													"</div>" + 
+													"<!--===============CAPTION =================-->" + 
+													"<div class='caption' align='center' style='height:180px;'>" + 	
+														"<h5>" + restaurant.name + "</h5>" + 
+														"<p style='font-size:18px;'>" + restaurant.area + "</p>" + 
+														"<p style='font-size:18px;'>" + restaurant.cuisine + "</p>" + 
+													"</div>" + 
+												"</a>" + 
+											"</article>"
+										);
+									}
+									
+									if (restaurants.length < 18) {
+										$('#seebutton').hide();
+									}
+									else{
+										$(".feature-columns").append(
+										"<div id='seebutton' class='col-md-12 form-group'>" + 
+					                        "<input type='submit' name='submit' class='btn btn-sm btn-outline-inverse2' value='See All'" +
+					                         "onclick='showRestaurants(18,50)'/>" +
+					                        "<img src='/images/theme_images/loader-form.GIF' class='form-loader' style='display:none' id='load'>"+
+					                    "</div>");
+					                    $("#seebutton").click(function(){
+					                    	$('#load').show();
+										});
 
-		                          </div>
-		                          <!--===============CAPTION =================-->
-		                          <div class="caption" style="height:180px;">
-		                            <h5>{{rstrnt[0].restaurant_name}}</h5>
-		                            <!-- <p class="perk-logo"> logo </p> -->
-		                            <p style="font-size:18px;">{{rstrnt[0].area}}</p>
-		                            <p style="font-size:18px;">{{rstrnt[0].cuisine_type}}</p>
-		                          </div>
-		                            <!--=============END CAPTION =============-->
-		                        </a><!-- .thumbnail -->
-		                      </article>
-		                    {% endfor %}
-		                </section>
-
-		            		{% if many_restaurants %}
-								{{ pagination.links }}
-				            {% endif %}
+										}	
+									console.log(end);
+								});							
+							}
+						</script>				            
 
 		                {% endif %}
 
