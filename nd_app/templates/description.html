@@ -19,19 +19,62 @@ Description
               </p>
 
               <h6 style="color:#FF9933" align="left"> {{rstrnt.perk}} </h6>
+
               <form class="form-style validate-form clearfix" action="{{ url_for('description') }}" method="POST">
                   <div class="form-group form-general-error-container"></div>
                   <div align="left" class="form-group">
                     {{ form.submit(class_="btn btn-lg btn-outline-inverse") }} 
                     <img src="/images/theme_images/loader-form.GIF" class="form-loader">
                   </div>
-                </form>
+              </form>
+
+
+             <!--  <form class="form-style validate-form clearfix" action = "{{url_for('description') }}" method="POST">
+                <div class="form-group form-general-error-container"></div>
+                <div align="left" class="form-group")>
+                  {% if not is_favorite %}
+                    {{ form.favorites(class_="btn btn-lg btn-outline-inverse") }} 
+                  {% elif is_favorite %}
+                    {{ form.rfavorites(class_="btn btn-lg btn-outline-inverse") }} 
+                  {% endif %}
+                   <img src="/images/theme_images/loader-form.GIF" class="form-loader">
+                </div>
+              </form> --> 
+              <div align="left" class="form-group")>
+              {% if is_favorite %}
+                <input type="image" src="../../images/other_images/red_heart.png" name="saveForm" id="fav" />
+              {% elif not is_favorite %}
+                <input type="image" src="../../images/other_images/white_heart.png" name="saveForm" id="fav" />
+              {% endif %}
               </div>
 
+              <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+              <script>
+                $("#fav").click(function(){
+                var p = "{{is_favorite}}"
+                console.log(p);
+
+                if(p=="False"){
+                  $.post( 
+                  "description",
+                  { fav: "False" }
+                  );
+                }
+                else{
+                  $.post( 
+                  "description",
+                  { fav: "True" }
+                  );
+                }
+
+
+                });
+              </script>
 
 
 
-
+            </div>
+              
               <div class="row">
                               
                 <div class="col-md-12">

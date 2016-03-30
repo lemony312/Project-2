@@ -2,9 +2,9 @@ from nd_app import app
 from flask import Flask, render_template, request, flash, session, redirect, url_for, jsonify
 from datetime import datetime, timedelta
 from flask.ext.mail import Message, Mail
-from nd_app.models import db, Customers, CustomersInfo, Restaurants, RstrntGall, RstrntCateg, ZipcodeIncome, RedeemInfo, RatingInfo
+from nd_app.models import db, Customers, CustomersInfo, Restaurants, RstrntGall, RstrntCateg, ZipcodeIncome, RedeemInfo, RatingInfo, Favorites
 from nd_app.forms import SigninForm, ForgetPwdForm, ResetPwdForm, QuestionForm, RedeemForm, SearchForm, EmailForm, AccountForm, FeedbackForm, RegistrationForm, CustomerSearchForm, RestaurantAccountForm, RestaurantSigninForm, RestaurantForgetPwdForm
-from nd_app.searchfunc import show_restaurants
+from nd_app.searchfunc import show_restaurants, show_fav_restaurants, is_favorite
 from operator import attrgetter
 import string
 import random
@@ -407,6 +407,7 @@ def questions():
 def register():
 	dt = datetime.now(pytz.timezone('US/Eastern'))
 	present = dt.replace(tzinfo=None)
+
 	form = RegistrationForm()
 
 	if request.method == 'POST':
@@ -461,28 +462,48 @@ def register():
 
 @app.route("/favorites", methods=['GET', 'POST'])
 def favorites():
-	return home()
 
-def generateList(customer_score):
-	seed_number = random.randrange(100)
-	session['rest_seed_number'] = seed_number
-	print seed_number, "first time"
+	form = SearchForm()
+
+	is_ios = True if request.args.get('ios', None) else False  # for ios app
+
+	if 'customers_email_address' not in session or 'pass' not in session:
+	 	return return_for_ios('redirect_to_index', is_ios)
+	if 'offset' not in session:
+		session['offset'] = 0
+
+	if request.method == 'POST':
+		if request.args.get('search', None):
+			session['area'] = form.place.data
+			session['rank'] = form.rank.data
+			session['search_key'] = form.search_key.data
+		if request.args.get('see_more', None):
+			session['see_more'] = True
+		session['see_more'] = True	
+
+	customer = Customers.query.filter_by(customers_email_address = session['customers_email_address']).first()
+	customer_id = "%05d" % (customer.customers_id)
+	need_seemore_tab = True
+
+	search_key = session['search_key'] if 'search_key' in session else ''
+
+
 	if 'area' not in session:
-		restaurants = filter_restaurants(customer_score, seed_number)
-		#restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX)
+		restaurants = show_fav_restaurants(customer_id)
 		session['prev_area'] = 'ALL'
 		session['prev_rank'] = 'All'
 
 	else:
 		area = session['area']
 		rank = session['rank']
-
-		restaurants = filter_restaurants(customer.score, seed_number, area=area, rank=rank, search_key=search_key)
-		#restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX, area=area, rank=rank, search_key=search_key)
+		restaurants = show_fav_restaurants(customer_id, area=area, rank=rank, search_key=search_key)
 		session['prev_area'] = area
 		session['prev_rank'] = rank
 
-	session['restaurants'] = []
+	session['see_more'] = False
+
+
+	rstrnts = []
 	for restaurant in restaurants:
 		rstrnt = []
 
@@ -493,31 +514,57 @@ def generateList(customer_score):
 
 		rstrnt.append(restaurant)
 		rstrnt.append(rstrntgall)
-		session['restaurants'].append(rstrnt)	
+		rstrnts.append(rstrnt)
+
+	form.search_key.data = search_key  # prevent search field from being cleared
+
+	session.pop('area', None)
+	session.pop('rank', None)
+	session.pop('search_key', None)
+
+	form.place.choices = [('ALL','All Areas'),
+							('CHELSEA','Chelsea'),
+							('EAST VILLAGE','East Village'),
+							('GREENWICH VILLAGE','Greenwich Village'),
+							('LOWER EAST SIDE', 'Lower East Side'),
+							('MIDTOWN EAST','Midtown East'),
+							('MIDTOWN SOUTH','Midtown South'),
+							('MIDTOWN WEST','Midtown West'),
+							('SOHO','Soho'),
+							('TRIBECA','Tribeca'),
+							('UPPER EAST SIDE','Upper East Side'),
+							('UPPER WEST SIDE','Upper West Side'),
+							('WEST VILLAGE','West Village'),
+							('Harlem', 'Harlem'),
+							('Brooklyn', 'Brooklyn')]
+
+	if customer.score > HIGHEST_SCORE:
+		form.rank.choices = [('All','All Colors'),('Platinum','Platinum'),('Gold','Gold'),('Silver','Silver'),('Bronze','Bronze'),('Blue','Blue')]
+	elif customer.score > HIGHER_SCORE:
+		form.rank.choices = [('All','All Colors'),('Gold','Gold'),('Silver','Silver'),('Bronze','Bronze'),('Blue','Blue')]
+	elif customer.score > MIDDLE_SCORE:
+		form.rank.choices = [('All','All Colors'),('Silver','Silver'),('Bronze','Bronze'),('Blue','Blue')]
+	elif customer.score > LOWER_SCORE:
+		form.rank.choices = [('All','All Colors'),('Bronze','Bronze'),('Blue','Blue')]
+	else:
+		form.rank.choices = [('All','All Colors'),('Blue','Blue')]
+
+	if (session['prev_area'], session['prev_area'].title()) in form.place.choices:
+		form.place.choices.remove((session['prev_area'], session['prev_area'].title()))
+		form.place.choices.insert(0, (session['prev_area'], session['prev_area'].title()))
+	if (session['prev_rank'], session['prev_rank'].title()) in form.rank.choices:
+		form.rank.choices.remove((session['prev_rank'], session['prev_rank'].title()))
+		form.rank.choices.insert(0, (session['prev_rank'], session['prev_rank'].title()))
 
 
-def get_css_framework():
-    return current_app.config.get('CSS_FRAMEWORK', 'bootstrap3')
+	if len(rstrnts) == 0:
+		return render_template("favorites.html", form=form, rstrnts=rstrnts, show="show_popup", success=False, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
+	else:
+		return render_template("favorites.html", form=form, rstrnts=rstrnts, success=True, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
 
-
-def get_link_size():
-    return current_app.config.get('LINK_SIZE', 'sm')
-
-
-def show_single_page_or_not():
-    return current_app.config.get('SHOW_SINGLE_PAGE', False)
-
-def get_pagination(**kwargs):
-    kwargs.setdefault('record_name', 'records')
-    return Pagination(css_framework=get_css_framework(),
-                      link_size=get_link_size(),
-                      show_single_page=show_single_page_or_not(),
-                      **kwargs
-                      )
 
 ###### Diner Account Page ######
-@app.route("/home/", defaults={'page: 1'}, methods=['GET', 'POST'])
-@app.route("/home/<int:page>/", methods=["GET", "POST"])
+@app.route("/home", methods=['GET', 'POST'])
 def home():
 	form = SearchForm()
 	is_ios = True if request.args.get('ios', None) else False  # for ios app
@@ -529,48 +576,52 @@ def home():
 
 	#print "Everytime we render", session['offset']
 
-		
-	customer = Customers.query.filter_by(customers_email_address = session['customers_email_address']).first()
-	customer_id = "%05d" % (customer.customers_id)
-	need_seemore_tab = True
-
 	if request.method == 'POST':
 		if request.args.get('search', None):
 			session['area'] = form.place.data
 			session['rank'] = form.rank.data
 			session['search_key'] = form.search_key.data
-		if request.args.get('page', 1):
-			session['page'] = int(request.args.get('page', 1))
+		if request.args.get('see_more', None):
+			session['see_more'] = True
+		session['see_more'] = True	
+
+	customer = Customers.query.filter_by(customers_email_address = session['customers_email_address']).first()
+	customer_id = "%05d" % (customer.customers_id)
+	need_seemore_tab = True
 
 	search_key = session['search_key'] if 'search_key' in session else ''
 
-	if session['page']>1:
-		restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX,page=session['page'])
-		pagination = get_pagination(page=session['page'],
-                                per_page=per_page,
-                                total=total,
-                                record_name='restaurants',
-                                )
-	else: #traverse list first time
-	 	seed_number = random.randrange(100)
-	 	session['rest_seed_number'] = seed_number
-	 	if 'area' not in session:
-	 		restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX,page=session['page'])
-	 		session['prev_area'] = 'ALL'
-	 		session['prev_rank'] = 'All'
+	if 'see_more' in session and session['see_more']:
+		seed_number = session['rest_seed_number'] if 'rest_seed_number' in session else 1
+		if 'area' not in session:
+			restaurants = show_restaurants(customer.score, seed_number)
+			session['prev_area'] = 'ALL'
+			session['prev_rank'] = 'All'
 
-	 	else:
+		else:
 			area = session['area']
-	 		rank = session['rank']
-			restaurants = show_restaurants(customer.score, seed_number, limit=DATA_MAX, area=area, rank=rank, page=session['page'],search_key=search_key)
+			rank = session['rank']
+			restaurants = show_restaurants(customer.score, seed_number + 12, area=area, rank=rank, search_key=search_key)
+		session['see_more'] = False
+
+	else:
+		seed_number = random.randrange(100)
+		session['rest_seed_number'] = seed_number
+
+		if 'area' not in session:
+			restaurants = show_restaurants(customer.score, seed_number, limit=12)
+			session['prev_area'] = 'ALL'
+			session['prev_rank'] = 'All'
+
+		else:
+			area = session['area']
+			rank = session['rank']
+			restaurants = show_restaurants(customer.score, seed_number, limit=12, area=area, rank=rank, search_key=search_key)
 			session['prev_area'] = area
-	 		session['prev_rank'] = rank
-	 		
-		pagination = get_pagination(page=session['page'],
-                    per_page=per_page,
-                    total=total,
-                    record_name='restaurants',
-                    )	
+			session['prev_rank'] = rank
+
+		if len(restaurants) >12:
+		 	need_seemore_tab = False
 
 	rstrnts = []
 	for restaurant in restaurants:
@@ -628,10 +679,9 @@ def home():
 
 
 	if len(rstrnts) == 0:
-		return render_template("home.html", form=form, rstrnts=rstrnts,pagination=pagination, show="show_popup", success=False, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
+		return render_template("home.html", form=form, rstrnts=rstrnts, show="show_popup", success=False, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
 	else:
-		return render_template("home.html", form=form, rstrnts=rstrnts,pagination=pagination, page=session['page'], success=True, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
-
+		return render_template("home.html", form=form, rstrnts=rstrnts, success=True, user=customer, customer_id=customer_id, many_restaurants=need_seemore_tab)
 
 @app.route('/description/<rstrnt_id>', methods=['GET', 'POST'])
 @app.route('/description', defaults={'rstrnt_id':None}, methods=['GET', 'POST'])
@@ -648,27 +698,46 @@ def description(rstrnt_id=None):
 	customer = Customers.query.filter_by(customers_email_address = session['customers_email_address']).first()
 	customer_id = "%05d" % (customer.customers_id)
 
+	is_favorites = is_favorite(customer_id, session['restaurant_id'])
+	print is_favorites
+
 	if request.method == 'POST':
 
-		midnight = present.replace(hour=0,minute=0,second=0,microsecond=0)
-		redeems_today = []
-		redeems_today = RedeemInfo.query.filter(RedeemInfo.customer_id == customer.customers_id, RedeemInfo.datetime > midnight).all()
+		if str(request.form["fav"]) == "False":
+			if not is_favorites:
+				print "false 1"
+				newFav = Favorites('', customer_id, session['restaurant_id'])
+				db.session.add(newFav)
+				db.session.commit()
 
-		if len(redeems_today) <= 1:
-			points = 5
-			customer.score = customer.score + points
-			customer.redeems = customer.redeems + 1
-			customer = db.session.merge(customer)
-			db.session.commit()
-		else:
-			customer.redeems = customer.redeems + 1
-			customer = db.session.merge(customer)
+		elif str(request.form["fav"]) == "True":
+			print "true 1"
+			qd = Favorites.query.filter(Favorites.customers_id == customer.customers_id, Favorites.restaurant_id == session['restaurant_id']).first()
+			db.session.delete(qd)
 			db.session.commit()
 
-		newredeem = RedeemInfo(customer.customers_id, session['restaurant_id'], present)
+			# return return_for_ios("addfavorite", is_ios)
+				
+		else:	
+			midnight = present.replace(hour=0,minute=0,second=0,microsecond=0)
+			redeems_today = []
+			redeems_today = RedeemInfo.query.filter(RedeemInfo.customer_id == customer.customers_id, RedeemInfo.datetime > midnight).all()
 
-		db.session.add(newredeem)
-		db.session.commit()
+			if len(redeems_today) <= 1:
+				points = 5
+				customer.score = customer.score + points
+				customer.redeems = customer.redeems + 1
+				customer = db.session.merge(customer)
+				db.session.commit()
+			else:
+				customer.redeems = customer.redeems + 1
+				customer = db.session.merge(customer)
+				db.session.commit()
+
+			newredeem = RedeemInfo(customer.customers_id, session['restaurant_id'], present)
+
+			db.session.add(newredeem)
+			db.session.commit()
 
 		return return_for_ios("redeem", is_ios)
 
@@ -728,7 +797,7 @@ def description(rstrnt_id=None):
 		return render_template('description.html', form=form, rstrnt=restaurant, text_concierge=text_concierge,
 								descstrs=descstrs, menu_exist=menu_exist, galls=rstrntgall,
 								rstcategs=rstcategs, rating=rating, price=price, user=customer, customer_id=customer_id,
-								valid_date=valid_date)
+								valid_date=valid_date, is_favorite=is_favorites)
 
 
 @app.route('/account', methods=['GET', 'POST'])

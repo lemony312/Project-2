@@ -63,6 +63,8 @@ class RegistrationForm(Form):
 
 class RedeemForm(Form):
 	submit = SubmitField('Redeem')
+	favorites = SubmitField('Add to Favorites')
+	rfavorites = SubmitField('Remove from Favorites')
 
 	def __init__(self, *args, **kwargs):
 		Form.__init__(self, *args, **kwargs)
